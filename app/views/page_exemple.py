@@ -12,5 +12,5 @@ def test():
     # On récupère la base de donnée
     db = get_db 
     # à compléter
-    return render_template('/pages.html')
+    return render_template('/page_exemple.html')
     

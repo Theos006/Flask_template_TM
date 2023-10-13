@@ -3,3 +3,8 @@ body{
     color: rgb(238,146,80);
 
 }
+
+.logo {
+    max-width: 100%;
+    height: auto;
+}
