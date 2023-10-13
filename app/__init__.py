@@ -7,7 +7,7 @@ from app.utils import *
 from app.views.home import home_bp
 from app.views.auth import auth_bp
 from app.views.user import user_bp
-from app.views.pages import test_bp
+from app.views.page_exemple import test_bp
 
 # Fonction automatiquement appelée par le framework Flask lors de l'exécution de la commande python -m flask run permettant de lancer le projet
 # La fonction retourne une instance de l'application créée

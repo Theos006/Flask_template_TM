@@ -6,7 +6,6 @@ import os
 # Création d'un blueprint contenant les routes ayant le préfixe...
 test_bp = Blueprint('test', __name__, url_prefix='/test')
 
-
 # Création de la route
 @test_bp.route('/test', methods=('GET', 'POST'))
 def test():
