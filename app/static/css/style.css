@@ -11,15 +11,19 @@ body{
 .list_button {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     gap: 20px; 
 
 }
 button{
-    background-color: #F07217;
+    background-color: #F8B98B;
     height: 80px;
     width: 480px;    
     border-radius: 100px;
     cursor: pointer;
+    color:#EE9250 ;
+    border: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+    
 }
