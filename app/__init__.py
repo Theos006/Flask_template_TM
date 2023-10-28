@@ -8,7 +8,7 @@ from app.views.home import home_bp
 from app.views.auth import auth_bp
 from app.views.user import user_bp
 from app.views.page_exemple import test_bp
-from app.views.page_theo import homes_bp
+from app.views.page_accueil import homes_bp
 from app.views.connection_ou_creation import connection_ou_creation_bp
 
 # Fonction automatiquement appelée par le framework Flask lors de l'exécution de la commande python -m flask run permettant de lancer le projet

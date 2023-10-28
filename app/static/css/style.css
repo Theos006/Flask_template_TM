@@ -5,8 +5,10 @@ body{
 }
 
 .logo {
-    max-width: 100%;
-    height: auto;
+    display: block;
+    margin: auto;
+    height: 600px;
+    width: 600px;
 }
 .list_button {
     display: flex;

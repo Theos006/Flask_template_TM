@@ -1,0 +1,12 @@
+<!doctype html>
+<head>
+    <title>{% block title %}{% endblock %} - Template de base Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <img class="logo"
+        src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
+        alt="Logo de notre application web"
+    >
+</body>
