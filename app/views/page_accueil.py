@@ -1,10 +1,10 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, app, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, app)
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
 import os
 
 # Création d'un blueprint contenant les routes ayant le préfixe /home
-homes_bp = Blueprint('homes', __name__, url_prefix='/homes')
+homes_bp = Blueprint('homes', __name__, url_prefix='/auth')
 
 # Création de la route
 @homes_bp.route('/homes', methods=('GET', 'POST'))
