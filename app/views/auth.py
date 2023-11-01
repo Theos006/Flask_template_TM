@@ -7,15 +7,16 @@ import os
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 # Route /auth/register
-@auth_bp.route('/register', methods=('GET', 'POST'))
-def register():
+@auth_bp.route('/register_client', methods=('GET', 'POST'))
+def register_client():
 
     # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
     if request.method == 'POST':
 
-        # On récupère les champs 'username' et 'password' de la requête HTTP
+        # On récupère les champs 'username', 'password' et 'email' de la requête HTTP
         username = request.form['username']
         password = request.form['password']
+        email = request.form['email']
 
         # On récupère la base de donnée
         db = get_db()
@@ -24,7 +25,7 @@ def register():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
-                db.execute("INSERT INTO users (username, password) VALUES (?, ?)",(username, generate_password_hash(password)))
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse,Email) VALUES (?, ?, ?)",(username, generate_password_hash(password), email))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
@@ -33,7 +34,7 @@ def register():
                 # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
                 error = f"User {username} is already registered."
                 flash(error)
-                return redirect(url_for("auth.register"))
+                return redirect(url_for("auth.register_client"))
             
             return redirect(url_for("auth.login"))
          
@@ -43,7 +44,46 @@ def register():
             return redirect(url_for("auth.login"))
     else:
         # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
-        return render_template('auth/register.html')
+        return render_template('auth/register_client.html')
+    
+@auth_bp.route('/register_createur', methods=('GET', 'POST'))
+def register_createur():
+
+    # Si des données de formulaire sont envoyées vers la route /register (ce qui est le cas lorsque le formulaire d'inscription est envoyé)
+    if request.method == 'POST':
+
+        # On récupère les champs 'username' et 'password' de la requête HTTP
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+
+        # On récupère la base de donnée
+        db = get_db()
+
+        # Si le nom d'utilisateur et le mot de passe ont bien une valeur
+        # on essaie d'insérer l'utilisateur dans la base de données
+        if username and password:
+            try:
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse,Email) VALUES (?, ?, ?)",(username, generate_password_hash(password), email))
+                # db.commit() permet de valider une modification de la base de données
+                db.commit()
+            except db.IntegrityError:
+
+                # La fonction flash dans Flask est utilisée pour stocker un message dans la session de l'utilisateur
+                # dans le but de l'afficher ultérieurement, généralement sur la page suivante après une redirection
+                error = f"User {username} is already registered."
+                flash(error)
+                return redirect(url_for("auth.register_createur"))
+            
+            return redirect(url_for("auth.login"))
+         
+        else:
+            error = "Username or password invalid"
+            flash(error)
+            return redirect(url_for("auth.login"))
+    else:
+        # Si aucune donnée de formulaire n'est envoyée, on affiche le formulaire d'inscription
+        return render_template('auth/register_createur.html')
 
 # Route /auth/login
 @auth_bp.route('/login', methods=('GET', 'POST'))
