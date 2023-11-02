@@ -39,4 +39,5 @@ body{
     margin: auto;
     height: 15%;
     width: 10%;
+    cursor: pointer;
 }
