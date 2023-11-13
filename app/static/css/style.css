@@ -52,6 +52,7 @@ body{
     align-items: center;
     justify-content: center; 
     height: 100vh;
+    position: relative;
 }
 
 .rem_box{
@@ -90,4 +91,19 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: block;
     margin: 5px 0;
+}
+
+#mdp{
+    background-color: #F8B98B;
+    height: 50px;
+    width: 350px;    
+    border-radius: 100px;
+    cursor: pointer;
+    color:#EE9250 ;
+    border: none;
+    font-size: 120%;
+    font-weight: 150;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    bottom: 10px;
 }
