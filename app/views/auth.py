@@ -3,6 +3,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
 import os
 
+
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -25,7 +26,19 @@ def register_client():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
-                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse,Email) VALUES (?, ?, ?)",(username, generate_password_hash(password), email))
+                # Récupérer le maximum actuel dans la colonne IdUtilisateur
+                result = db.execute("SELECT MAX(IdUtilisateur) FROM Utilisateur").fetchone()
+                dernier_id = result[0]
+
+                # Vérifier si des données existent déjà
+                if dernier_id is not None:
+                    idUtilisateurs = dernier_id + 1
+                else:
+                # S'il n'y a pas de données, commencer à partir de 1 par exemple
+                    idUtilisateurs = 1
+
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, 0, idUtilisateurs))
+
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
@@ -64,7 +77,18 @@ def register_createur():
         # on essaie d'insérer l'utilisateur dans la base de données
         if username and password:
             try:
-                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse,Email) VALUES (?, ?, ?)",(username, generate_password_hash(password), email))
+                # Récupérer le maximum actuel dans la colonne IdUtilisateur
+                result = db.execute("SELECT MAX(IdUtilisateur) FROM Utilisateur").fetchone()
+                dernier_id = result[0]
+
+                # Vérifier si des données existent déjà
+                if dernier_id is not None:
+                    idUtilisateurs = dernier_id + 1
+                else:
+                # S'il n'y a pas de données, commencer à partir de 1 par exemple
+                    idUtilisateurs = 1
+
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, 1, idUtilisateurs))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:
