@@ -13,4 +13,11 @@ def homes():
     db = get_db 
     # à compléter
     return render_template('/page_accueil.html')
+
+accueil_bp = Blueprint('accueil', __name__, url_prefix='/auth')
+
+@accueil_bp.route('/accueil', methods=('GET', 'POST'))
+def accueil():
+    db = get_db
+    return render_template('/accueil_connecté.html')
     
