@@ -42,6 +42,15 @@ body{
     cursor: pointer;
 }
 
+.logo_retour{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+
 #accueil{
     cursor: default;
 }

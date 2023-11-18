@@ -6,6 +6,13 @@
 
 <body>
 
+    <a id="accueil" href="">
+        <img class="logo_retour"
+            src="{{ url_for('static', filename='images/Logo_retour.png') }}"
+            alt="Logo de retour à la page précédente"
+        >
+    </a>
+
     <form class="list_button" >
         <button class="button" formaction="/auth/login">Se Connecter</button>            
         <button class="button" formaction="/auth/creation_createur_ou_client">Créer un compte</button>

@@ -5,6 +5,14 @@
 </head>
 
 <body>
+
+    <a id="accueil" href="">
+        <img class="logo_retour"
+            src="{{ url_for('static', filename='images/Logo_retour.png') }}"
+            alt="Logo de retour à la page précédente"
+        >
+    </a>
+
     <form class="list_button" >
         <button class="button" formaction="/auth/register_client">Compte client</button>            
         <button class="button" formaction="/auth/register_createur">Compte créateur</button>
