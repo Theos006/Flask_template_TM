@@ -1,9 +1,8 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from app import login_required
 
 # Routes /...
 home_bp = Blueprint('home', __name__)
-
-
 
 # Route /
 @home_bp.route('/', methods=('GET', 'POST'))
