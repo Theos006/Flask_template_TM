@@ -8,6 +8,7 @@ from app.views.home import home_bp
 from app.views.auth import auth_bp
 from app.views.user import user_bp
 from app.views.page_exemple import test_bp
+from app.views.session import session_bp
 
 
 # Fonction automatiquement appelée par le framework Flask lors de l'exécution de la commande python -m flask run permettant de lancer le projet
@@ -25,6 +26,7 @@ def create_app():
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(test_bp)
+    app.register_blueprint(session_bp)
 
 
     # On retourne l'instance de l'application Flask

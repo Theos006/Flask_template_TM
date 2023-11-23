@@ -140,7 +140,7 @@ def login():
             session.clear()
             session['user_id'] = user['IdUtilisateur']
             # On redirige l'utilisateur vers la page principale une fois qu'il s'est connecté
-            return redirect("/")
+            return redirect(url_for("session.accueil_connecte"))
         
         else:
             # En cas d'erreur, on ajoute l'erreur dans la session et on redirige l'utilisateur vers le formulaire de login
