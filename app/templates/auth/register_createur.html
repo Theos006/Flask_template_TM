@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}S'enregistrer{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
+  <form method="post" class="list_box">
     <input name="username" id="username" required class="rem_box" placeholder="Nom d'utilisateur">
     <input type="password" name="password" id="password" required class="rem_box" placeholder="Mot de passe">
     <input type="email" name="email" id="email" required class="rem_box" placeholder="Email">
-    <input type="submit" value="Register" class="button">
+    <input type="submit" value="Créer" class="login">
   </form>
 {% endblock %}
