@@ -102,7 +102,7 @@ body{
     margin: 5px 0;
 }
 
-#mdp{
+#mdp_oublie{
     background-color: #F8B98B;
     height: 50px;
     width: 350px;    
@@ -114,5 +114,5 @@ body{
     font-weight: 150;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: absolute;
-    bottom: 10px;
+    bottom: 250px;
 }

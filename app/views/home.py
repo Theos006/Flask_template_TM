@@ -9,7 +9,7 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/', methods=('GET', 'POST'))
 def landing_page():
     # Affichage de la page principale de l'application
-    return render_template('home/index.html')
+    return render_template('page_accueil.html')
 
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
