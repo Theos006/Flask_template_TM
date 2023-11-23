@@ -14,4 +14,4 @@ def landing_page():
 # Gestionnaire d'erreur 404 pour toutes les routes inconnues
 @home_bp.route('/<path:text>', methods=['GET', 'POST'])
 def not_found_error(text):
-    return render_template('home/404.html'), 404
+    return render_template('home/404.html'), 404 
