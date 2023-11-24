@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'retour_maison.html' %}
 
 {% block header %}
   <h1>{% block title %}{% endblock %}</h1>
@@ -6,14 +6,6 @@
 {% endblock %}
 
 {% block content %}
-
-  <a id="accueil" href="/auth/creation_createur_ou_client?">
-    <img class="logo_retour"
-        src="{{ url_for('static', filename='images/Logo_retour.png') }}"
-        alt="Logo de retour à la page précédente"
-    >
-  </a>
-
   <form method="post" class = "list_box">
     <input name="username" id="username" required class="rem_box" placeholder="Nom d'utilisateur">
     <input type="password" name="password" id="password" required class="rem_box" placeholder="Mot de passe">

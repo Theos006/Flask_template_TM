@@ -51,8 +51,8 @@ body{
     cursor: pointer;
 }
 
-#accueil{
-    cursor: default;
+.accueil{
+    cursor: pointer;
 }
 
 .list_box{
