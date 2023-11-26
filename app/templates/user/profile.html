@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <ul>
-        <li>Username: {{g.user.username}}</li>
-        <li>Password: {{g.user.password}}</li>
-    </ul>
+    <h1>Mon compte</h1>
+    <p>{{g.user.username}}</p>
+    <form method="post">
+      <p>Nom d'utilisateur</p>
+      <input placeholder="Nom d'utilisateur">
+      <p>Mot de passe</p>
+      <input placeholder="Mot de passe">
+      <p>Emaill</p>
+      <input  placeholder="Email">
+    </form>
     
 {% endblock %}
