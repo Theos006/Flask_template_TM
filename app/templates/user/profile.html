@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
 
-{% block header %}
-  <h1>{% block title %}Profil de l'utilisateur connecté {% endblock %}</h1>
-{% endblock %}
-
 {% block content %}
     <h1>Mon compte</h1>
-    <p>{{g.user.username}}</p>
     <form method="post">
-      <p>Nom d'utilisateur</p>
-      <input placeholder="Nom d'utilisateur">
-      <p>Mot de passe</p>
-      <input placeholder="Mot de passe">
-      <p>Emaill</p>
-      <input  placeholder="Email">
+      <h3>Nom d'utilisateur : {{g.user.NomUtilisateur}}</h3>
+      <input placeholder="Nouveau nom">
+
+      <h3>Biographie : </h3>
+      <input placeholder="{{g.user.Biographie}}">
+      
+      <h3>Email : {{g.user.Email}}</h3>
+      <input placeholder="Nouvelle email">
+      
+      <h3>Changer de mot de passe</h3>
+      <input placeholder="Ancien mot de passe">
+      <input placeholder="Nouveau mot de passe">
+      <input placeholder="Nouveau mot de passe">
+
+      <h3>Compte bancaire : {{g.user.CompteBancaire}}</h3>
+      <input placeholder="Nouveau compte bancaire">
+
+      <input type="submit" value="Changer mes infos">
+      <input type="submit" value="Changer de type de compte">
+
     </form>
     
 {% endblock %}

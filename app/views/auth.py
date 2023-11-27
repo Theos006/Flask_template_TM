@@ -199,4 +199,4 @@ def creation_compte_createur():
     # On récupère la base de donnée
     db = get_db 
     # à compléter
-    return render_template('auth/creation_compte_createur.html') 
+    return render_template('auth/creation_compte_createur.html')  
