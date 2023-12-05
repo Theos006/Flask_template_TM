@@ -180,12 +180,12 @@ def load_logged_in_user():
         g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
 
 
-@auth_bp.route('/connection_ou_creation', methods=('GET', 'POST'))
-def connection_ou_creation():
+@auth_bp.route('/connexion_ou_creation', methods=('GET', 'POST'))
+def connexion_ou_creation():
     # On récupère la base de donnée
     db = get_db 
     # à compléter
-    return render_template('auth/connection_ou_creation.html') 
+    return render_template('auth/connexion_ou_creation.html') 
 
 @auth_bp.route('/creation_createur_ou_client', methods=('GET', 'POST'))
 def creation_createur_ou_client():
