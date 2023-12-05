@@ -9,3 +9,4 @@ def accueil_connecte():
     username = g.user['NomUtilisateur'] if g.user else None
 
     return render_template('session/accueil_connecte.html',username=username) 
+  

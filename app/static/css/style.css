@@ -117,3 +117,13 @@ body{
     position: absolute;
     bottom: 10%;
 }
+
+.box_proposition{
+    background-color: #EE9250;
+    height: 230px;
+    width: 1025px;
+    border-radius: 100px;
+    cursor: pointer;
+    align-items: center;
+    gap: 6%;
+}
