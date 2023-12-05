@@ -1,3 +1,12 @@
+<!doctype html>
+<head>
+    <title>{% block title %}{% endblock %}Créateur ou client</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
 <body>
-    <p>It's working</p>
+    <img class="logo_retour"
+        src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
+        alt="Logo de notre application web"
+    >
 </body>
