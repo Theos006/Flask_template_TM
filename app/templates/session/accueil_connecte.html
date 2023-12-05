@@ -5,16 +5,28 @@
 </head>
 
 <body>
-    <img class="logo_retour"
-        src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
-        alt="Logo de notre application web"
-    >
-    <form method="post" class="">
+    <a>
+        <a href="/">
+            <img class="logo_retour"
+            src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
+            alt="Logo de notre application web">
+        
+        </a>
+
+        <a href="/user/profile" class="bouton_mon_compte">
+            
+            <img 
+            src="{{ url_for('static', filename='images/Profil.png') }}">
+
+        </a>
+    </a>
+
+    <form method="post" class="list_button">
         <button class="box_proposition">première proposition</button>
         <button class="box_proposition">deuxième proposition</button>
         <button class="box_proposition">troisième proposition</button>
         <button class="box_proposition">quatrième proposition</button>
     </form>
     <p>It's working</p>
-    <button class="button" formaction="/app/templates/user/profile.html">Mon compte</button>
+
 </body>

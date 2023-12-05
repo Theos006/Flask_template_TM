@@ -47,8 +47,8 @@ body{
     z-index: 1;
     top: 10px;
     left: 10px;
-    height: 100px;
-    width: 100px;
+    height: 130px;
+    width: 130px;
     cursor: pointer;
 }
 
@@ -127,3 +127,12 @@ body{
     align-items: center;
     gap: 6%;
 }
+
+.bouton_mon_compte{
+    position: absolute;
+    height: 100px;
+    width: 100px;    
+    right: 20px;
+    top: 10px;
+}
+
