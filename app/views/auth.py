@@ -34,7 +34,7 @@ def register_client():
                 if dernier_id is not None:
                     idUtilisateurs = dernier_id + 1
                 else:
-                # S'il n'y a pas de données, commencer à partir de 1 par exemple
+                # S'il n'y a pas de données, on commence à partir de 1 
                     idUtilisateurs = 1
 
                 db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, 0, idUtilisateurs))

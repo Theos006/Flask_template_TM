@@ -4,21 +4,28 @@
     <h1>Mon compte</h1>
     <form method="post">
       <h3>Nom d'utilisateur : {{g.user.NomUtilisateur}}</h3>
-      <input placeholder="Nouveau nom">
+      <input name="new_username"
+      placeholder="Nouveau nom">
 
       <h3>Biographie : </h3>
-      <input placeholder="{{g.user.Biographie}}">
+      <input name="new_biographie"
+      placeholder="{{g.user.Biographie}}">
       
       <h3>Email : {{g.user.Email}}</h3>
-      <input placeholder="Nouvelle email">
+      <input name="new_email"
+      placeholder="Nouvelle email">
       
       <h3>Changer de mot de passe</h3>
-      <input placeholder="Ancien mot de passe">
-      <input placeholder="Nouveau mot de passe">
-      <input placeholder="Nouveau mot de passe">
+      <input name="old_mdp" 
+      placeholder="Ancien mot de passe">
+      <input name="new_mdp1" 
+      placeholder="Nouveau mot de passe">
+      <input name="new_mdp2" 
+      placeholder="Nouveau mot de passe">
 
       <h3>Compte bancaire : {{g.user.CompteBancaire}}</h3>
-      <input placeholder="Nouveau compte bancaire">
+      <input name="new_compte_bancaire" 
+      placeholder="Nouveau compte bancaire">
 
       <input type="submit" value="Changer mes infos">
       <input type="submit" value="Changer de type de compte">

@@ -136,3 +136,9 @@ body{
     top: 10px;
 }
 
+#barre_de_recherche{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ 
