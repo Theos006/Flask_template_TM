@@ -43,7 +43,10 @@ body{
 }
 
 .logo_retour{
-
+    position: absolute;
+    z-index: 1;
+    left: 10px;
+    top: 10px;
     height: 130px;
     width: 130px;
     cursor: pointer;
@@ -149,7 +152,13 @@ body{
 .bandeau_accueil{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
+}
+
+.bouton_deconnexion{
+    height: 130px;
+    width: 130px;
+    cursor: pointer;    
 }

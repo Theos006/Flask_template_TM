@@ -5,20 +5,20 @@
 </head>
 
 <body>
-    <a class="bandeau_accueil">
+    <div class="bandeau_accueil">
         <a href="/auth/logout">
-            <img class="logo_retour" 
+            <img class="bouton_deconnexion" 
             src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
             alt="Logo de notre application web">
         
         </a>
 
-        <a id="barre_de_recherche">
+        <form id="barre_de_recherche">
 
             <input placeholder="Barre de recherche">
             <input type="submit" value="Chercher">
     
-        </a>
+        </form>
 
         <a href="/user/profile" class="bouton_mon_compte">
             
@@ -27,7 +27,7 @@
 
         </a>
 
-    </a>
+    </div>
     
 
     <div class="barre"></div>
