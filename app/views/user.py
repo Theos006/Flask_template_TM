@@ -12,14 +12,6 @@ user_bp = Blueprint('user', __name__, url_prefix='/user')
 @login_required 
 def show_profile():
     # Affichage de la page principale de l'application
-    return render_template('user/profile.html')
-
-@user_bp.before_app_request
-def recuperation_info_user():
-    user_id = session.get('user_id')
-    db = get_db()
-    g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
-
     if request.method == 'POST':
         new_username=request.form['new_username']
         new_biographie=request.form['new_biographie']
@@ -32,6 +24,16 @@ def recuperation_info_user():
         if new_username is not None :
             db.execute("UPDATE Utilisateur SET NomUtilisateur = (?) WHERE IdUtilisateur = (?);"),(new_username),(user_id)
             db.commit()
+    return render_template('user/profile.html')
+
+
+@user_bp.before_app_request
+def recuperation_info_user():
+    user_id = session.get('user_id')
+    db = get_db()
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
+
+
 
 
             
