@@ -13,6 +13,8 @@ user_bp = Blueprint('user', __name__, url_prefix='/user')
 def show_profile():
     # Affichage de la page principale de l'application
     if request.method == 'POST':
+        db = get_db()
+        user_id = session.get('user_id')
         new_username=request.form['new_username']
         new_biographie=request.form['new_biographie']
         new_email=request.form['new_email']
@@ -22,8 +24,9 @@ def show_profile():
         new_compte_bancaire=request.form['new_compte_bancaire']
         
         if new_username is not None :
-            db.execute("UPDATE Utilisateur SET NomUtilisateur = (?) WHERE IdUtilisateur = (?);"),(new_username),(user_id)
+            test = db.execute("UPDATE Utilisateur SET NomUtilisateur = ? WHERE IdUtilisateur = ?",(new_username,user_id))
             db.commit()
+            return redirect(url_for('user.show_profile'))
     return render_template('user/profile.html')
 
 
