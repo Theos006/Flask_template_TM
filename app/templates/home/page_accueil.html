@@ -10,11 +10,21 @@
         alt="Logo de notre application web"
     >
     
-    <a id="accueil"  href="/auth/connexion_ou_creation">
-        <img class="logo_connexion" 
-            src="{{ url_for('static', filename='images/Connection.png') }}"
-            alt="Logo de notre application web"
-        >
-    </a>
+    <div class="logo_connexion">
+        <a href="/auth/login">
+            <img class="logo_co_crea" 
+            src="{{ url_for('static', filename='images/Connexion.png') }}"
+            alt="Logo de connexion"
+            >
+        </a>
+        
+        <a href="/auth/creation_createur_ou_client">
+            <img class="logo_co_crea" 
+            src="{{ url_for('static', filename='images/Creation.png') }}"
+            alt="Logo de création de compte"
+            >
+        </a>
+        
+    </div>
      
 </body>
