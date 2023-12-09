@@ -15,6 +15,7 @@ def show_profile():
     if request.method == 'POST':
         db = get_db()
         user_id = session.get('user_id')
+        g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
         new_username=request.form['new_username']
         new_biographie=request.form['new_biographie']
         new_email=request.form['new_email']
@@ -23,10 +24,23 @@ def show_profile():
         new_mdp2=request.form['new_mdp2']
         new_compte_bancaire=request.form['new_compte_bancaire']
         
-        if new_username is not None :
-            test = db.execute("UPDATE Utilisateur SET NomUtilisateur = ? WHERE IdUtilisateur = ?",(new_username,user_id))
-            db.commit()
-            return redirect(url_for('user.show_profile'))
+        if len(new_username)>=1 :
+            db.execute("UPDATE Utilisateur SET NomUtilisateur = ? WHERE IdUtilisateur = ?",(new_username,user_id))
+        if len(new_biographie)>=1 :
+            db.execute("UPDATE Utilisateur SET Biographie = ? WHERE IdUtilisateur = ?",(new_biographie,user_id))
+        if len(new_email)>=1 :
+            db.execute("UPDATE Utilisateur SET Email = ? WHERE IdUtilisateur = ?",(new_email,user_id))
+        if len(new_compte_bancaire)>=1 :
+            db.execute("UPDATE Utilisateur SET CompteBancaire = ? WHERE IdUtilisateur = ?",(new_compte_bancaire,user_id))
+
+        if len(old_mdp)>=1 and len(new_mdp1)>=1 and len(new_mdp2)>= 1 :
+            if check_password_hash(g.user['MotDePasse'],old_mdp):
+                if new_mdp1 == new_mdp2 :
+                    db.execute("UPDATE Utilisateur SET MotDePasse = ? WHERE IdUtilisateur = ?",(generate_password_hash(new_mdp1),user_id))
+            
+        db.commit()
+        return redirect(url_for('user.show_profile'))
+            
     return render_template('user/profile.html')
 
 
