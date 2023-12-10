@@ -164,3 +164,30 @@ body{
     width: 130px;
     cursor: pointer;    
 }
+
+.logo_retour_accueil_connecte{
+    width: 100px;
+    height: 100px;
+}
+
+.bandeau_mon_compte{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.changement_une_info{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.formulaire_changement_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    position: relative;
+    flex-wrap: wrap;
+}
