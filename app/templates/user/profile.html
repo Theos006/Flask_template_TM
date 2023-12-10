@@ -16,25 +16,25 @@
 
     <form method="post" class="formulaire_changement_info" >
       <div class="changement_une_info">
-        <h3>Nom d'utilisateur : {{g.user.NomUtilisateur}}</h3>
+        <label for="new_username">Nom d'utilisateur : {{g.user.NomUtilisateur}}</label>
         <input name="new_username"
         placeholder="Nouveau nom" >
       </div>
 
       <div class="changement_une_info">
-        <h3>Biographie : </h3>
+        <label for="new_biographie">Biographie : </label>
         <input name="new_biographie"
         placeholder="{{g.user.Biographie}}" >
       </div>
       
       <div class="changement_une_info">
-        <h3>Email : {{g.user.Email}}</h3>
+        <label for = "new_email">Email : {{g.user.Email}}</label>
         <input name="new_email"
         placeholder="Nouvelle email" >
       </div>
       
       <div class="changement_une_info">
-        <h3>Changer de mot de passe</h3>
+        <label for = "old_mdp">Changer de mot de passe</label>
         <input name="old_mdp" 
         placeholder="Ancien mot de passe">
         <input name="new_mdp1" 
@@ -44,9 +44,19 @@
       </div>
 
       <div class="changement_une_info">
-        <h3>Compte bancaire : {{g.user.CompteBancaire}}</h3>
+        <label for="new_compte_bancaire">Compte bancaire : {{g.user.CompteBancaire}}</label>
         <input name="new_compte_bancaire" 
         placeholder="Nouveau compte bancaire">
+      </div>
+
+      <label for="type_de_compte">Type de compte : {{g.user.TypeDeCompte}}</label>
+      <select name="type_de_compte" id="type_de_compte">
+        <option value="">Choisissez une option
+      </option>
+        <option value=Client>Client</option>
+        <option value=Createur>Créateur</option>
+      </select>
+
       </div>
 
       <input type="submit" value="Changer mes infos" >

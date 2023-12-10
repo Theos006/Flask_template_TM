@@ -4,6 +4,7 @@ from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
+
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 
@@ -23,23 +24,47 @@ def show_profile():
         new_mdp1=request.form['new_mdp1']
         new_mdp2=request.form['new_mdp2']
         new_compte_bancaire=request.form['new_compte_bancaire']
+        type_de_compte=request.form['type_de_compte']
         
         if len(new_username)>=1 :
-            db.execute("UPDATE Utilisateur SET NomUtilisateur = ? WHERE IdUtilisateur = ?",(new_username,user_id))
+            try :
+                db.execute("UPDATE Utilisateur SET NomUtilisateur = ? WHERE IdUtilisateur = ?",(new_username,user_id))
+                db.commit()
+            except db.IntegrityError:
+                error = f"Le nom {new_username} est déjà pris."
+                alert(error)
+            return redirect(url_for('user.show_profile'))
+        
         if len(new_biographie)>=1 :
             db.execute("UPDATE Utilisateur SET Biographie = ? WHERE IdUtilisateur = ?",(new_biographie,user_id))
         if len(new_email)>=1 :
-            db.execute("UPDATE Utilisateur SET Email = ? WHERE IdUtilisateur = ?",(new_email,user_id))
+            try :
+                db.execute("UPDATE Utilisateur SET Email = ? WHERE IdUtilisateur = ?",(new_email,user_id))
+                db.commit()
+            except db.IntegrityError:
+                error = f"L'adresse {new_email} est déjà pris."
+                flash(error)
+            return redirect(url_for('user.show_profile'))
         if len(new_compte_bancaire)>=1 :
             db.execute("UPDATE Utilisateur SET CompteBancaire = ? WHERE IdUtilisateur = ?",(new_compte_bancaire,user_id))
+            return redirect(url_for('user.show_profile'))
 
         if len(old_mdp)>=1 and len(new_mdp1)>=1 and len(new_mdp2)>= 1 :
             if check_password_hash(g.user['MotDePasse'],old_mdp):
                 if new_mdp1 == new_mdp2 :
                     db.execute("UPDATE Utilisateur SET MotDePasse = ? WHERE IdUtilisateur = ?",(generate_password_hash(new_mdp1),user_id))
-            
-        db.commit()
-        return redirect(url_for('user.show_profile'))
+                else : 
+                    error = f"Les deux nouveaux mots de passe ne sont pas identiques"
+                    flash(error)
+            else :
+                error = f"Mot de passe incorrect"
+                flash(error)
+            return redirect(url_for('user.show_profile'))
+        
+        if len(type_de_compte)>=1 :
+            db.execute("UPDATE Utilisateur SET TypeDeCompte = ? WHERE IdUtilisateur = ?", (type_de_compte, user_id))
+            db.commit()
+            return redirect(url_for('user.show_profile'))
             
     return render_template('user/profile.html')
 
@@ -49,6 +74,7 @@ def recuperation_info_user():
     user_id = session.get('user_id')
     db = get_db()
     g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
+
 
 
 

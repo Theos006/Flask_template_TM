@@ -37,7 +37,7 @@ def register_client():
                 # S'il n'y a pas de données, on commence à partir de 1 
                     idUtilisateurs = 1
 
-                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, 0, idUtilisateurs))
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, "Client", idUtilisateurs))
 
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
@@ -88,7 +88,7 @@ def register_createur():
                 # S'il n'y a pas de données, commencer à partir de 1 par exemple
                     idUtilisateurs = 1
 
-                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, 1, idUtilisateurs))
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur) VALUES (?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, "Createur", idUtilisateurs))
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
             except db.IntegrityError:

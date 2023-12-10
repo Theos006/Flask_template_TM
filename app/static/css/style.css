@@ -180,14 +180,21 @@ body{
 .changement_une_info{
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 50%;
+    height: 70%;
 }
 
 .formulaire_changement_info{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
-    position: relative;
     flex-wrap: wrap;
+    align-content: center;
+    gap: 10px;
+}
+label{
+    font-size: 120%;
+    font-weight: 150;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
