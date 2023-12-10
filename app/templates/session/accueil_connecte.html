@@ -1,42 +1,46 @@
 <!doctype html>
-<head>
-    <title>{% block title %}{% endblock %}Créateur ou client</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}Créateur ou client</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
 
-<body>
-    <div class="bandeau_accueil">
-        <a href="/auth/logout">
-            <img class="bouton_deconnexion" 
-            src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
-            alt="Logo de notre application web">
+    <body>
+        <div class="bandeau_accueil">
+            <a href="/auth/logout">
+                <img class="bouton_deconnexion" 
+                src="{{ url_for('static', filename='images/Logo_Creator_connect.png') }}"
+                alt="Logo de notre application web">
+            
+            </a>
+
+            <form method="post" id="barre_de_recherche">
+
+                <input placeholder="Barre de recherche" name="recherche">
+                <input type="submit" value="Chercher">
         
-        </a>
+            </form>
 
-        <form id="barre_de_recherche">
+            <a href="/user/profile" class="bouton_mon_compte"> 
+                
+                <img 
+                src="{{ url_for('static', filename='images/Profil.png') }}">
 
-            <input placeholder="Barre de recherche">
-            <input type="submit" value="Chercher">
+            </a>
+
+        </div>
+        
+
+        <div class="barre"></div>
     
+        <form method="post" class="list_button">
+            
+            {% for id in list_id %}
+                <button class="box_proposition">{{id}}</button>
+            {% endfor %}
+
         </form>
 
-        <a href="/user/profile" class="bouton_mon_compte">
-            
-            <img 
-            src="{{ url_for('static', filename='images/Profil.png') }}">
 
-        </a>
-
-    </div>
-    
-
-    <div class="barre"></div>
- 
-    <form method="post" class="list_button">
-        <button class="box_proposition">Première proposition</button>
-        <button class="box_proposition">Deuxième proposition</button>
-        <button class="box_proposition">Troisième proposition</button>
-        <button class="box_proposition">Quatrième proposition</button>
-    </form>
-
-</body>
+    </body>
+</html>
