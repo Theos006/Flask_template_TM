@@ -120,20 +120,7 @@ body{
     bottom: 10%;
 }
 
-.box_proposition{
-    background-color: #F8B98B;
-    height: 150px;
-    width: 800px;
-    border-radius: 40px;
-    border: none;
-    color: #EE9250;
-    cursor: pointer;
-    font-size: 120%;
-    font-weight: 150;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    align-items: center;
-    gap: 6%;
-}
+
 
 .bouton_mon_compte{
 
@@ -197,4 +184,25 @@ label{
     font-weight: 150;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
+}
+
+.liste_recherche{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.box_proposition{
+    background-color: #F8B98B;
+    height: 150px;
+    width: 80%;
+    border-radius: 40px;
+    border: none;
+    color: #EE9250;
+    cursor: pointer;
+    font-size: 120%;
+    font-weight: 150;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
