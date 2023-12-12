@@ -2,11 +2,23 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from app.utils import *
 from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
+import os
 
+#Définition de l'endroit on l'on stockes les fichiers téléchargés ainsi que les types de fichiers autorisés afin d'éviter tout fichiers malveillants 
+UPLOAD_FOLDER = '/app/static/images/photos_profil'
+ALLOWED_EXTENSIONS = {'png','jpeg'}
 
+#Fonction qui vérifie si l'extension du fichier est valide 
+def fichier_autorise(fichier):
+    return '.' in fichier and \
+        fichier.rsplit('.',1)[1].lower()in ALLOWED_EXTENSIONS
 
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
+
+user_bp.record(lambda s: setattr(s, 'config', {'UPLOAD_FOLDER': UPLOAD_FOLDER}))
+
 
 # Route /user/profile accessible uniquement à un utilisateur connecté grâce au décorateur @login_required
 @user_bp.route('/profile', methods=('GET', 'POST'))
@@ -25,6 +37,7 @@ def show_profile():
         new_mdp2=request.form['new_mdp2']
         new_compte_bancaire=request.form['new_compte_bancaire']
         type_de_compte=request.form['type_de_compte']
+  
         
         if len(new_username)>=1 :
             try :
@@ -65,6 +78,19 @@ def show_profile():
             db.execute("UPDATE Utilisateur SET TypeDeCompte = ? WHERE IdUtilisateur = ?", (type_de_compte, user_id))
             db.commit()
             return redirect(url_for('user.show_profile'))
+        
+        #On vérifie que l'utilisateur upload un fichier
+        print('photo_de_profil' in request.files)
+        if 'photo_de_profil' in request.files:
+            file = request.files['photo_de_profil']
+            if file and fichier_autorise(file.filename):
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(g.user_bp.config['UPLOAD_FOLDER'],filename)
+                file.save(file_path)
+                print("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))
+                db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))
+                db.commit()
+
             
     return render_template('user/profile.html')
 
@@ -74,11 +100,3 @@ def recuperation_info_user():
     user_id = session.get('user_id')
     db = get_db()
     g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
-
-
-
-
-
-            
-        
-  

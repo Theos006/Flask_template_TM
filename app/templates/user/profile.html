@@ -14,7 +14,7 @@
 
     </div>
 
-    <form method="post" class="formulaire_changement_info" >
+    <form method="post" class="formulaire_changement_info" enctype="multipart/form-data">
       <div class="changement_une_info">
         <label for="new_username">Nom d'utilisateur : {{g.user.NomUtilisateur}}</label>
         <input name="new_username"
@@ -57,10 +57,14 @@
         <option value=Createur>Créateur</option>
       </select>
 
+      <label for="photo_de_profil">Choissisez une photo de profil</label>
+      <input type="file" id="photo_de_profil" name="photo_de_profil" accept="image/png, image/jpeg" />
+
       </div>
 
       <input type="submit" value="Changer mes infos" >
 
     </form>
     
+
 {% endblock %}
