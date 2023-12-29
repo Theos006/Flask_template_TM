@@ -205,7 +205,26 @@ label{
     font-size: 120%;
     font-weight: 150;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+<<<<<<< HEAD
+}
+
+.bandeau_profil{
+    display: flex;
+}
+
+#rectangle_profil{
+    background-color: #F8B98B;
+    border-radius: 40px;
+    height: 135px;
+    width: 1370px;
+}
+
+#cercle_profil{
+    background-color: #F8B98B;
+   
+=======
     display: flex;
     align-items: center;
     justify-content: center;
+>>>>>>> 8ea2c0f23ebe2976a4aafc7c54be31babb5dc77d
 }
