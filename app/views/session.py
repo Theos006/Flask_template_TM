@@ -20,7 +20,8 @@ def accueil_connecte():
 
     print(list_nom)
     
-    return render_template('session/accueil_connecte.html', list_id=list_id)
+<<<<<<< HEAD
+    return render_template('session/accueil_connecte.html', list_nom=list_nom)
 
 @session_bp.route('/profil', methods=('GET', 'POST'))
 def profil():
