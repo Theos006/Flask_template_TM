@@ -10,7 +10,7 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @login_required
 def accueil_connecte():
     list_nom = [1, 2, 3, 4]
-
+ 
     if request.method == 'POST':
         db = get_db()
         recherche = request.form['recherche']
