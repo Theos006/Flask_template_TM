@@ -21,3 +21,18 @@ def accueil_connecte():
     print(list_id)
     
     return render_template('session/accueil_connecte.html', list_id=list_id)
+
+@session_bp.route('/profil', methods=('GET', 'POST'))
+def profil():
+    db = get_db 
+    return render_template('/profil.html')
+
+@session_bp.route('/portfolio', methods=('GET', 'POST'))
+def portfolio():
+    db = get_db 
+    return render_template('/portfolio.html')
+
+@session_bp.route('/shop', methods=('GET', 'POST'))
+def shop():
+    db = get_db 
+    return render_template('/shop.html')
