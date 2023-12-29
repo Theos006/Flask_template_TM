@@ -1,13 +1,12 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app,Flask)
 from app.utils import *
 from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 import os
 
-#Définition de l'endroit on l'on stockes les fichiers téléchargés ainsi que les types de fichiers autorisés afin d'éviter tout fichiers malveillants 
-UPLOAD_FOLDER = '/app/static/images/photos_profil'
-ALLOWED_EXTENSIONS = {'png','jpeg'}
+#Définition des types de fichiers autorisés afin d'éviter tout fichiers malveillants 
+ALLOWED_EXTENSIONS = {'png','jpeg','jpg'}
 
 #Fonction qui vérifie si l'extension du fichier est valide 
 def fichier_autorise(fichier):
@@ -16,9 +15,6 @@ def fichier_autorise(fichier):
 
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
-
-user_bp.record(lambda s: setattr(s, 'config', {'UPLOAD_FOLDER': UPLOAD_FOLDER}))
-
 
 # Route /user/profile accessible uniquement à un utilisateur connecté grâce au décorateur @login_required
 @user_bp.route('/profile', methods=('GET', 'POST'))
@@ -80,12 +76,14 @@ def show_profile():
             return redirect(url_for('user.show_profile'))
         
         #On vérifie que l'utilisateur upload un fichier
-        print('photo_de_profil' in request.files)
         if 'photo_de_profil' in request.files:
             file = request.files['photo_de_profil']
+            print(file)
+            print(fichier_autorise(file.filename))
+            print(file and fichier_autorise(file.filename))
             if file and fichier_autorise(file.filename):
                 filename = secure_filename(file.filename)
-                file_path = os.path.join(g.user_bp.config['UPLOAD_FOLDER'],filename)
+                file_path = os.path.join('/app/static/images/photos_profil/', filename)
                 file.save(file_path)
                 print("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))
                 db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))

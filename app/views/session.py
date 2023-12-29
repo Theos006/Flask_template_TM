@@ -9,17 +9,18 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @session_bp.route('/accueil_connecte', methods=('GET', 'POST'))
 @login_required
 def accueil_connecte():
-    list_id = [1, 2, 3, 4]
+    list_nom = [1, 2, 3, 4]
 
     if request.method == 'POST':
         db = get_db()
         recherche = request.form['recherche']
         # création d'une liste stockant les 10 id utilisateur dont le nom ressemble le plus à la recherche
         result = db.execute("SELECT NomUtilisateur FROM Utilisateur WHERE NomUtilisateur LIKE ? LIMIT 10", ('%' + recherche + '%',))
-        list_id = [row[0] for row in result.fetchall()]
+        list_nom = [row[0] for row in result.fetchall()]
 
-    print(list_id)
+    print(list_nom)
     
+<<<<<<< HEAD
     return render_template('session/accueil_connecte.html', list_id=list_id)
 
 @session_bp.route('/profil', methods=('GET', 'POST'))
@@ -36,3 +37,6 @@ def portfolio():
 def shop():
     db = get_db 
     return render_template('/shop.html')
+=======
+    return render_template('session/accueil_connecte.html', list_nom=list_nom)
+>>>>>>> 8ea2c0f23ebe2976a4aafc7c54be31babb5dc77d
