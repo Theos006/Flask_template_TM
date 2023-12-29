@@ -19,8 +19,7 @@ def accueil_connecte():
         list_nom = [row[0] for row in result.fetchall()]
 
     print(list_nom)
-    
-<<<<<<< HEAD
+
     return render_template('session/accueil_connecte.html', list_nom=list_nom)
 
 @session_bp.route('/profil', methods=('GET', 'POST'))
