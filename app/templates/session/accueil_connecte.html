@@ -33,13 +33,13 @@
 
         <div class="barre"></div>
     
-        <form method="post" class="liste_recherche">
+        <div class="liste_recherche">
             
-            {% for id in list_id %}
-                <button class="box_proposition">{{id}}</button>
+            {% for nom in list_nom %}
+                <a href="/user/profile" class="box_proposition">{{nom}}</a>
             {% endfor %}
 
-        </form>
+        </div>
 
 
     </body>
