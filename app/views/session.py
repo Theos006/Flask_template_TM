@@ -20,7 +20,6 @@ def accueil_connecte():
 
     print(list_nom)
     
-<<<<<<< HEAD
     return render_template('session/accueil_connecte.html', list_id=list_id)
 
 @session_bp.route('/profil', methods=('GET', 'POST'))
@@ -37,6 +36,3 @@ def portfolio():
 def shop():
     db = get_db 
     return render_template('/shop.html')
-=======
-    return render_template('session/accueil_connecte.html', list_nom=list_nom)
->>>>>>> 8ea2c0f23ebe2976a4aafc7c54be31babb5dc77d
