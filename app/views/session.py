@@ -22,17 +22,17 @@ def accueil_connecte():
 
     return render_template('session/accueil_connecte.html', list_nom=list_nom)
 
-@session_bp.route('/profil', methods=('GET', 'POST'))
-def profil():
+@session_bp.route('/profil_recherche', methods=('GET', 'POST'))
+def profil_recherche():
     db = get_db 
-    return render_template('/profil.html')
+    return render_template('session/profil_recherche.html')
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 def portfolio():
     db = get_db 
-    return render_template('/portfolio.html')
+    return render_template('session/portfolio.html')
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
 def shop():
     db = get_db 
-    return render_template('/shop.html')
+    return render_template('session/shop.html')
