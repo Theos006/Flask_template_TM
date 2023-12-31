@@ -1,4 +1,4 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, send_file)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, send_from_directory,app)
 from app.utils import *
 from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -80,15 +80,12 @@ def show_profile():
             file = request.files['photo_de_profil']
             if file and fichier_autorise(file.filename):
                 filename = secure_filename(file.filename)
-                file_path = os.path.join('/app/static/images/photos_profil/', filename)
-                send_file(file_path, as_attachment=True, download_name=filename)
-                file.save(file_path)
-                print("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))
-                db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path, user_id))
+                db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (filename, user_id))
                 db.commit()
 
             
     return render_template('user/profile.html')
+
 
 
 @user_bp.before_app_request
