@@ -1,7 +1,6 @@
 body{
     background-color: #ffffff;
     color: rgb(238,146,80);
-
 }
 
 .logo {
@@ -130,6 +129,25 @@ body{
 
 #barre_de_recherche{
     cursor: pointer;
+    background-color:rgba(240, 197, 166, 0.5);
+    height: 50px;
+    width: 390px;
+    border-radius: 100px;
+    border: none;
+    color: #EE9250;
+    font-size: 120%;
+    display: block;
+    margin: auto;
+    padding: 0;
+    
+}
+
+#barre_de_recherche::placeholder{
+    color: #EE9250;
+    font-size: 105%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    line-height: 1.5;
 }
  
 .barre{
@@ -142,8 +160,9 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: last baseline;
     flex-wrap: nowrap;
+    margin-right: 25px;
 }
 
 .bouton_deconnexion{
@@ -212,18 +231,33 @@ label{
 
 .bandeau_profil{
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 13%;
+    margin: 5%;
+}
+
+.logo_retour_profil{
+    width: 100px;
+    height: 100px;
+    margin-right: 45px;
 }
 
 .rectangle_profil{
     background-color: #F8B98B;
     border-radius: 40px;
     height: 135px;
-    width: 1370px;
+    width: 130%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cercle_profil{
     background-color: #F8B98B;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    margin-left: 50px;
 }
