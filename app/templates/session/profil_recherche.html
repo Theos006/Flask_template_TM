@@ -9,10 +9,12 @@
         <div class="bandeau_profil">
             <div class="rectangle_profil">
                 <div class="cercle_profil"></div>
-                <img class="logo_retour_profil"
+                <a href="/session/accueil_connecte">
+                    <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                     alt="Logo de retour à la page précédente"
-                >
+                    >
+                </a>
             </div>
         </div>
 
@@ -24,12 +26,16 @@
             <div class="rectangle_bio"></div>
 
             <div class="box_rectangles_portfolio_shop">
-                <div class="rectangle_portfolio">
-                    <div class="txt_portfolio">Portfolio</div>
-                </div>
-                <div class="rectangle_shop">
-                    <div class="txt_shop">Shop</div>
-                </div>
+                <a href="/session/portfolio" style="text-decoration: none;">
+                    <div class="rectangle_portfolio">
+                        <div class="txt_portfolio">Portfolio</div>
+                    </div>
+                </a>
+                <a href="/session/shop" style="text-decoration: none;">
+                    <div class="rectangle_shop">
+                        <div class="txt_shop">Shop</div>
+                    </div>
+                </a>
             </div>
         </div>
     </body>

@@ -243,13 +243,14 @@ label{
     width: 100px;
     height: 100px;
     margin-right: 45px;
+    cursor: pointer;
 }
 
 .rectangle_profil{
     background-color: #F8B98B;
     border-radius: 40px;
     height: 135px;
-    width: 130%;
+    width: 1400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -281,7 +282,7 @@ label{
 
 .box_rectangles_portfolio_shop{
     display: flex;
-    gap: 2.3%;
+    gap: 2.5%;
     margin-left: 25%;
 }
 
@@ -295,6 +296,7 @@ label{
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .txt_portfolio{
@@ -322,6 +324,7 @@ label{
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 .txt_shop{
