@@ -265,9 +265,36 @@ label{
     margin-left: 50px;
 }
 
+.cercle_photo_profil{
+    background-color: #ffffff;
+    width: 240px;
+    height: 240px;
+    border-radius: 100%;
+    margin-left: -25%;
+}
+
+.nom_utilisateur{
+    color: black;
+    font-size: 160%;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 43%;
+}
+
 .rectangles_profil{
-    margin: 5%;
     gap: 10px;
+}
+
+.placement_profil{
+    display: flex;
+}
+
+.reseaux_sociaux{
+    background-color: #EE9250;
+    width: 230px;
+    height: 700px;
+    margin-top: 3%;
+    margin-left: 6%;
 }
 
 .rectangle_bio{
@@ -276,14 +303,13 @@ label{
     background-color: #ffffff;
     border: 5px solid #F8B98B;
     border-radius: 35px;
-    border-width: 5px;
-    margin: 3% 3% 3% 25%;
+    margin: 3% 3% 3% 14%;
 }
 
 .box_rectangles_portfolio_shop{
     display: flex;
-    gap: 2.5%;
-    margin-left: 25%;
+    gap: 3%;
+    margin-left: 14%;
 }
 
 .rectangle_portfolio{
@@ -340,4 +366,8 @@ label{
     align-items: center;
     justify-content: center;
     margin-top: 5%;
+}
+
+.apercu{
+    margin-top: 40%;
 }
