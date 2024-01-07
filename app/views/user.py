@@ -1,4 +1,4 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, send_from_directory,app)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app)
 from app.utils import *
 from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -16,15 +16,24 @@ def fichier_autorise(fichier):
 # Routes /user/...
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 
+
+#convertiseur donnée binaire dans le bon format et le stock dans le disque 
+def writeTofile(data, filename):
+    # Convert binary data to proper format and write it on Hard Disk
+    with open(filename, 'wb') as file:
+        file.write(data)
+    print("Stored blob data into: ", filename, "\n")
+
 # Route /user/profile accessible uniquement à un utilisateur connecté grâce au décorateur @login_required
 @user_bp.route('/profile', methods=('GET', 'POST'))
 @login_required  
 def show_profile():
     # Affichage de la page principale de l'application
+    
+    db = get_db()
+    user_id = session.get('user_id')
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
     if request.method == 'POST':
-        db = get_db()
-        user_id = session.get('user_id')
-        g.user = db.execute('SELECT * FROM Utilisateur WHERE IdUtilisateur = ?', (user_id,)).fetchone()
         new_username=request.form['new_username']
         new_biographie=request.form['new_biographie']
         new_email=request.form['new_email']
@@ -80,10 +89,13 @@ def show_profile():
             file = request.files['photo_de_profil']
             if file and fichier_autorise(file.filename):
                 filename = secure_filename(file.filename)
-                db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (filename, user_id))
-                db.commit()
-
-            
+                uploads_folder = os.path.join(current_app.root_path, 'static/images/photos_profil')
+                file_path = os.path.join(uploads_folder, filename)
+                file.save(file_path)
+                file_path_save = os.path.join('images/photos_profil/',filename)
+                db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
+                db.commit()     
+                return render_template('user/profile.html')
     return render_template('user/profile.html')
 
 

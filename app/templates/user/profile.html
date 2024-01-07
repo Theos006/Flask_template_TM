@@ -59,7 +59,7 @@
 
       <label for="photo_de_profil">Choissisez une photo de profil</label>
 
-      <img src="{{g.user.PhotoDeProfil}}" alt="Photo de profil">
+      <img  src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}">
 
       <input type="file" id="photo_de_profil" name="photo_de_profil" accept="image/png, image/jpeg" />
 
