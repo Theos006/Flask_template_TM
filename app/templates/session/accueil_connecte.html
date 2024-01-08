@@ -15,31 +15,54 @@
             </a>
 
             <form method="post" id="barre_de_recherche">
-
                 <input name="recherche" required id="barre_de_recherche" placeholder="Barre de recherche">
-        
             </form>
 
             <a href="/user/profile" class="bouton_mon_compte"> 
-                
-                <img 
-                src="{{ url_for('static', filename='images/Profil.png') }}">
-
+                <img src="{{ url_for('static', filename='images/Profil.png') }}">
             </a>
-
         </div>
         
-
         <div class="barre"></div>
     
         <div class="liste_recherche">
-            
             {% for nom in list_nom %}
-                <a href="/session/profil_recherche" class="box_proposition">{{nom}}</a>
+                <a href="/session/profil_recherche" class="box_proposition" onclick="afficherProfil(event,'{{nom}}')">{{nom}}</a>
             {% endfor %}
-
         </div>
+        
 
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <script>
+            function afficherProfil(event, nom) {
+                event.preventDefault();
+        
+                console.log("Nom cliqué : " + nom);
+        
+                // Seulement si nom n'est pas vide, effectuez la requête AJAX
+                if (nom.trim() !== "") {
+                    $.ajax({
+                        url: '/session/profil_recherche',
+                        type: 'POST',
+                        data: { nom: nom },
+                        success: function (response) {
+                            console.log('Requête AJAX réussie.');
+                            if (response.success) {
+                                // Rediriger vers la page profil_recherche
+                                window.location.href = '/session/profil_recherche';
+                            } else {
+                                console.log('Aucun utilisateur trouvé avec ce nom.');
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Erreur lors de la requête AJAX.', error);
+                        }
+                    });
+                }
+            }
+        </script>
 
     </body>
 </html>
