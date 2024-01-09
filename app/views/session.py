@@ -42,3 +42,8 @@ def portfolio():
 def shop():
     db = get_db 
     return render_template('session/shop.html')
+
+@session_bp.route('/article', methods=('GET', 'POST'))
+def article():
+    db = get_db 
+    return render_template('session/article.html')
