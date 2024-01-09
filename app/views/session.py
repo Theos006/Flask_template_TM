@@ -25,20 +25,11 @@ def accueil_connecte():
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 def profil_recherche():
-    if request.method == 'POST':
-        db = get_db()
-        nom = request.form.get('nom')
-        g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
-        print(g.recherche['NomUtilisateur'])
-
-        # Vérifier si la requête a renvoyé un résultat
-        if g.recherche is not None:
-            return jsonify(success=True)
-        else:
-            return jsonify(success=False)
-    else:
-        # Set g.recherche to None or an empty dictionary for GET requests
-        g.recherche = None
+    nom_utilisateur = request.args.get('nom')
+    print(nom_utilisateur)
+    db = get_db()
+    g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
+    print(g.recherche['PhotoDeProfil'])
     return render_template('session/profil_recherche.html')
         
 
