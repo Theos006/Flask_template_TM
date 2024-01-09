@@ -12,7 +12,14 @@
                     <div class="cercle_profil"></div>
                     <div class="cercle_photo_profil"></div>
                 </div>
-                <div class="nom_utilisateur">"Nom créateur"</div>
+                <div class="nom_utilisateur">
+                    {% if g.recherche %}
+                        {{ g.recherche.NomUtilisateur }}
+                    {% else %}
+                        <!-- Handle the case when g.recherche is None -->
+                        No user found
+                    {% endif %}
+                </div>
                 <a href="/session/accueil_connecte">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"

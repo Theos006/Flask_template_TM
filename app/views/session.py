@@ -1,8 +1,9 @@
-from flask import (Blueprint, render_template)
-from app import login_required
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify)
 from app.utils import *
 from app.db.db import get_db
-from flask import request
+from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
+import os
 
 session_bp = Blueprint('session', __name__, url_prefix='/session')
 
@@ -24,8 +25,22 @@ def accueil_connecte():
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 def profil_recherche():
-    db = get_db 
+    if request.method == 'POST':
+        db = get_db()
+        nom = request.form.get('nom')
+        g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
+        print(g.recherche['NomUtilisateur'])
+
+        # Vérifier si la requête a renvoyé un résultat
+        if g.recherche is not None:
+            return jsonify(success=True)
+        else:
+            return jsonify(success=False)
+    else:
+        # Set g.recherche to None or an empty dictionary for GET requests
+        g.recherche = None
     return render_template('session/profil_recherche.html')
+        
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 def portfolio():

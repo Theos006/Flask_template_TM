@@ -383,6 +383,7 @@ label{
     margin-top: 40%;
 }
 
+<<<<<<< HEAD
 .carre_portfolio{
     width: 300px;
     height: 300px;
@@ -426,4 +427,17 @@ label{
     background-color: #ffffff;
     border: 5px solid #F8B98B;
     border-radius: 35px;
+=======
+.square-container {
+    width: 200px; 
+    height: 200px;
+    overflow: hidden;
+  }
+
+#profil_pdp{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+>>>>>>> b1a17bfd02dfe81637666510119af6f23938e737
 }
