@@ -27,10 +27,13 @@
     <div class="liste_recherche">
         {% for nom in list_nom %}
         <a href="{{ url_for('session.profil_recherche', nom=nom) }}" class="box_proposition">
-            <div id = "container_apercu_pdp">
-                <img src="{{ url_for('static', filename=list_pdp[list_nom.index(nom)] )}}" id = "apercu_pdp">
+            <div class = "Pdp_Nom_Bio">
+                <div id = "container_apercu_pdp">
+                    <img src="{{ url_for('static', filename=list_pdp[list_nom.index(nom)] )}}" id = "apercu_pdp">
+                </div>
+                <p>{{ nom }}</p>
+                <p>{{ list_bio[list_nom.index(nom)] }}</p>
             </div>
-            <p>{{ nom }}</p>
         </a>
         {% endfor %}
     </div>

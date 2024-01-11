@@ -12,11 +12,13 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @session_bp.route('/accueil_connecte', methods=('GET', 'POST'))
 @login_required
 def accueil_connecte():
-    list_nom = [1, 2, 3, 4]
-    list_pdp = []  # Initialize an empty list for profile pictures
+    list_nom = ["Admin", "Mirko", "Mathieu"]
+    list_pdp = []  
+    list_bio= []
+    db = get_db()
     
     if request.method == 'POST':
-        db = get_db()
+        
         recherche = request.form['recherche']
         # création d'une liste stockant les 10 id utilisateur dont le nom ressemble le plus à la recherche
         result = db.execute(
@@ -25,22 +27,21 @@ def accueil_connecte():
         )
         list_nom = [row[0] for row in result.fetchall()]
         
-        for nom in list_nom:
-            # Note: Use a comma after (nom,) to create a single-element tuple
-            image = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-            list_pdp.append(image.fetchone()[0])  # Fetch the first column of the first row
+    for nom in list_nom:
+        image = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
+        list_pdp.append(image.fetchone()[0])  
+        bio = db.execute("SELECT Biographie FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
+        list_bio.append(bio.fetchone()[0])  
 
     print(list_nom)
-
-    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp)
+    print(list_bio)
+    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_bio=list_bio)
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 def profil_recherche():
     nom_utilisateur = request.args.get('nom')
-    print(nom_utilisateur)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    print(g.recherche['PhotoDeProfil'])
     return render_template('session/profil_recherche.html')
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))

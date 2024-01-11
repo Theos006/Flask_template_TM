@@ -227,7 +227,7 @@ label{
     background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
     background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
-    height: 150px;
+    height: 228px;
     width: 80%;
     border-radius: 40px;
     border: none;
@@ -259,7 +259,11 @@ label{
 }
 
 .rectangle_profil{
-    background-color: #F8B98B;
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);    
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     border-radius: 40px;
     height: 135px;
     width: 1600px;
@@ -270,7 +274,11 @@ label{
 }
 
 .cercle_profil{
-    background-color: #F8B98B;
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);    
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     position: absolute;
     width: 300px;
     height: 300px;
@@ -470,14 +478,22 @@ label{
 }
 
 #apercu_pdp{
-    width: 75%;
-    height: 75%;
+    width: 100px; 
+    height: 100px;
     object-fit: cover;
     border-radius: 50%;
 }
 
 #container_apercu_pdp{
-    width: 200px; 
-    height: 200px;
+    width: 100px; 
+    height: 100px;
     overflow: hidden;
+    
+}
+
+.Pdp_Nom_Bio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
