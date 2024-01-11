@@ -488,6 +488,7 @@ label{
     width: 100px; 
     height: 100px;
     overflow: hidden;
+    margin-top: 20px;
     
 }
 
@@ -496,5 +497,14 @@ label{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    align-content: center;
+
+}
+
+#apercu_nom{
+    margin-top: 10px;
+}
+
+#apercu_bio{
+    margin-top: -10px;
 }
