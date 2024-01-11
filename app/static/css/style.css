@@ -237,7 +237,7 @@ label{
     font-weight: 150;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 
@@ -478,15 +478,15 @@ label{
 }
 
 #apercu_pdp{
-    width: 100px; 
-    height: 100px;
+    width: 120px; 
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
 }
 
 #container_apercu_pdp{
-    width: 100px; 
-    height: 100px;
+    width: 120px; 
+    height: 120px;
     overflow: hidden;
     margin-top: 20px;
     
@@ -498,13 +498,14 @@ label{
     justify-content: center;
     align-items: center;
     align-content: center;
-
+    margin-left: 3%;
 }
 
 #apercu_nom{
-    margin-top: 10px;
+    max-width: 120px;
+    margin: 0 0 0 0;
+    word-wrap: break-word;
+    padding: 10px;
+    text-align: center;
 }
 
-#apercu_bio{
-    margin-top: -10px;
-}

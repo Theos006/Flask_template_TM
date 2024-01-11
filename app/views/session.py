@@ -12,9 +12,8 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @session_bp.route('/accueil_connecte', methods=('GET', 'POST'))
 @login_required
 def accueil_connecte():
-    list_nom = ["Admin", "Mirko", "Mathieu"]
+    list_nom = ["Admin", "Mirko", "Mathieu", "Moi", "marc"]
     list_pdp = []  
-    list_bio= []
     db = get_db()
     
     if request.method == 'POST':
@@ -30,12 +29,9 @@ def accueil_connecte():
     for nom in list_nom:
         image = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
         list_pdp.append(image.fetchone()[0])  
-        bio = db.execute("SELECT Biographie FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-        list_bio.append(bio.fetchone()[0])  
 
     print(list_nom)
-    print(list_bio)
-    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_bio=list_bio)
+    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp)
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 def profil_recherche():
