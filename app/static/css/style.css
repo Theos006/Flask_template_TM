@@ -19,7 +19,11 @@ body{
 
 }
 .button{
-    background-color: #F8B98B;
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     height: 80px;
     width: 480px;    
     border-radius: 100px;
@@ -67,7 +71,11 @@ body{
 }
 
 .rem_box{
-    background-color:rgba(240, 197, 166, 0.5);
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1);
     height: 50px;
     width: 390px;
     border-radius: 100px;
@@ -90,7 +98,11 @@ body{
 }
 
 .login{
-    background-color: #F8B98B;
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     height: 60px;
     width: 400px;    
     border-radius: 100px;
