@@ -474,7 +474,7 @@ label{
     background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     width: 30%;
-    border-radius: 15%;
+    border-radius: 100px;
 }
 
 #apercu_pdp{
@@ -525,4 +525,69 @@ label{
     border-radius: 50%;
     z-index: 2;
     margin-left: 320px;
+}
+
+.input_mon_compte {
+    border-radius: 100px;
+    border: none;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1 );
+    font-size: 120%;
+}
+
+#type_de_compte {
+    border-radius: 100px;
+    border: none;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1 );
+    color: gray;
+}
+
+
+#bouton_changement_info{
+    border-radius: 100px;
+    border-width: 1px;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1 );
+    width: 40%;
+    font-size: 120%;
+    color: gray;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-file-upload input {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.custom-file-upload span {
+    border: none;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1);
+    padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 100px;
+    color: gray;
+
 }

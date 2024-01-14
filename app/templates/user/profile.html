@@ -18,42 +18,41 @@
         <form method="post" class="formulaire_changement_info" enctype="multipart/form-data">
           <div class="changement_une_info">
             <label for="new_username">Nom d'utilisateur : {{g.user.NomUtilisateur}}</label>
-            <input name="new_username"
+            <input name="new_username" class="input_mon_compte"
             placeholder="Nouveau nom" >
           </div>
 
           <div class="changement_une_info">
             <label for="new_biographie">Biographie : </label>
-            <input name="new_biographie"
+            <input name="new_biographie" class="input_mon_compte"
             placeholder="{{g.user.Biographie}}" >
           </div>
           
           <div class="changement_une_info">
             <label for = "new_email">Email : {{g.user.Email}}</label>
-            <input name="new_email" 
+            <input name="new_email" class="input_mon_compte"
             placeholder="Nouvelle email" >
           </div>
           
           <div class="changement_une_info">
             <label for = "old_mdp">Changer de mot de passe</label>
-            <input name="old_mdp" 
+            <input name="old_mdp" class="input_mon_compte"
             placeholder="Ancien mot de passe">
-            <input name="new_mdp1" 
+            <input name="new_mdp1" class="input_mon_compte"
             placeholder="Nouveau mot de passe">
-            <input name="new_mdp2" 
+            <input name="new_mdp2" class="input_mon_compte"
             placeholder="Nouveau mot de passe">
           </div>
 
           <div class="changement_une_info">
             <label for="new_compte_bancaire">Compte bancaire : {{g.user.CompteBancaire}}</label>
-            <input name="new_compte_bancaire" 
+            <input name="new_compte_bancaire" class="input_mon_compte"
             placeholder="Nouveau compte bancaire">
           </div>
 
           <label for="type_de_compte">Type de compte : {{g.user.TypeDeCompte}}</label>
           <select name="type_de_compte" id="type_de_compte">
-            <option value="">Choisissez une option
-          </option>
+            <option value="">Choisissez une option</option>
             <option value=Client>Client</option>
             <option value=Createur>Créateur</option>
           </select>
@@ -64,9 +63,12 @@
             <img  src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "profil_pdp">
           </div>
 
-          <input type="file" id="photo_de_profil" name="photo_de_profil" accept="image/png, image/jpeg" />
+          <label for="photo_de_profil" class="custom-file-upload">
+            <span>Choisir un fichier</span>
+            <input type="file" id="photo_de_profil" name="photo_de_profil" accept="image/png, image/jpeg" />
+          </label>
 
-          <input type="submit" value="Changer mes infos" >
+          <input type="submit" value="Changer mes infos" id="bouton_changement_info">
 
         </form>
       </div>

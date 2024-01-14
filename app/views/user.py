@@ -95,7 +95,7 @@ def show_profile():
                 file_path_save = os.path.join('images/photos_profil/',filename)
                 db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
                 db.commit()     
-                return render_template('user/profile.html')
+            return render_template('user/profile.html')
     return render_template('user/profile.html')
 
 
