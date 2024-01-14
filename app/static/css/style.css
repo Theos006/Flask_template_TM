@@ -315,11 +315,17 @@ label{
 }
 
 .reseaux_sociaux{
-    background-color: #EE9250;
+    display: flex;
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
     width: 230px;
     height: 700px;
     margin-top: 3%;
     margin-left: 6%;
+    border-radius: 2.5%;
 }
 
 .rectangle_bio{
