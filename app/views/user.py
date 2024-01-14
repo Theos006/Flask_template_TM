@@ -55,6 +55,9 @@ def show_profile():
         
         if len(new_biographie)>=1 :
             db.execute("UPDATE Utilisateur SET Biographie = ? WHERE IdUtilisateur = ?",(new_biographie,user_id))
+            db.commit()
+            return redirect(url_for('user.show_profile'))
+        
         if len(new_email)>=1 :
             try :
                 db.execute("UPDATE Utilisateur SET Email = ? WHERE IdUtilisateur = ?",(new_email,user_id))
@@ -65,12 +68,14 @@ def show_profile():
             return redirect(url_for('user.show_profile'))
         if len(new_compte_bancaire)>=1 :
             db.execute("UPDATE Utilisateur SET CompteBancaire = ? WHERE IdUtilisateur = ?",(new_compte_bancaire,user_id))
+            db.commit()
             return redirect(url_for('user.show_profile'))
 
         if len(old_mdp)>=1 and len(new_mdp1)>=1 and len(new_mdp2)>= 1 :
             if check_password_hash(g.user['MotDePasse'],old_mdp):
                 if new_mdp1 == new_mdp2 :
                     db.execute("UPDATE Utilisateur SET MotDePasse = ? WHERE IdUtilisateur = ?",(generate_password_hash(new_mdp1),user_id))
+                    db.commit()
                 else : 
                     error = f"Les deux nouveaux mots de passe ne sont pas identiques"
                     flash(error)
