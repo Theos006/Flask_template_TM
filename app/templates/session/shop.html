@@ -7,12 +7,14 @@
 
     <body>
         <div class="bandeau_profil">
-            <div class="rectangle_profil">
+            <div class="rectangle_profil"> 
                 <div class="double_cercle">
                     <div class="cercle_profil"></div>
-                    <div class="cercle_photo_profil"></div>
+                        <div id = "container_recherche_pdp">
+                            <img src="{{ url_for('static', filename=g.recherche.PhotoDeProfil )}}" id = "recherche_pdp">
+                        </div>
                 </div>
-                <div class="nom_utilisateur">"Nom créateur" - Shop</div>
+                <div class="nom_utilisateur">{{g.recherche.NomUtilisateur}} - Shop</div>
                 <a href="/session/accueil_connecte">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
