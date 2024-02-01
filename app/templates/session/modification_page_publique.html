@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}Modification de ma page publique</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <div class="bandeau_profil">
+            <div class="rectangle_profil">
+                <div class="double_cercle">
+                    <div class="cercle_profil"></div>
+                </div>
+                <div class="nom_utilisateur">
+                    <p>Nom utilisateur</p>
+                </div>
+                <a href="/session/profile">
+                    <img class="logo_retour_profil" 
+                    src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
+                    alt="Logo de retour à la page précédente"
+                    >
+                </a>
+            </div>
+        </div>
+
+        <div class="placement_profil">
+            <div class="reseaux_sociaux">
+                <p>Liens vers les réseaux sociaux</p>
+            </div>
+
+            <div class="rectangles_profil">
+                <div class="rectangle_bio"><p>Biographie</p></div>
+
+                <div class="box_rectangles_portfolio_shop">
+                    <a href="/session/modification_portfolio" style="text-decoration: none;">
+                        <div class="rectangle_portfolio">
+                            <div class="txt_portfolio">Portfolio</div>
+                            <div class="apercu">Aperçu portfolio</div>
+                        </div>
+                    </a>
+                    <a href="/session/modification_shop" style="text-decoration: none;">
+                        <div class="rectangle_shop">
+                            <div class="txt_shop">Shop</div>
+                            <div class="apercu">Aperçu shop</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html> 
+    

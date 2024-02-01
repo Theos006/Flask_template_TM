@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}Modification de mon portfolio</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body>
+        <div class="bandeau_profil">
+            <div class="rectangle_profil"> 
+                <div class="double_cercle">
+                    <div class="cercle_profil"></div>
+                </div>
+                <div class="nom_utilisateur">Nom utilisateur - Portfolio</div>
+                <a href="/session/modification_page_publique">
+                    <img class="logo_retour_profil" 
+                    src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
+                    alt="Logo de retour à la page précédente"
+                    >
+                </a>
+            </div>
+        </div>
+
+        <div class="ligne_portfolio">
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+        </div>
+        <div class="ligne_portfolio">
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+            <div class="carre_portfolio"></div>
+        </div>
+    </body>
+</html>
