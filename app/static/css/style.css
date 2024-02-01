@@ -620,3 +620,31 @@ label{
     color: gray;
 
 }
+
+.liste_bouton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 2%;
+}
+
+.bouton{
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1 );
+    height: 90px;
+    width: 200px;    
+    border-radius: 100px;
+    cursor: pointer;
+    color:grey ;
+    border: none;
+    font-size: 120%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

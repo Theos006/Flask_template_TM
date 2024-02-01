@@ -58,3 +58,18 @@ def shop():
 def article():
     db = get_db()  # Call the function to get the database connection
     return render_template('session/article.html')
+
+@session_bp.route('/modification_page_publique', methods=('GET', 'POST'))
+def modification_page_publique():
+    db = get_db()  
+    return render_template('session/modification_page_publique.html')
+
+@session_bp.route('/modification_shop', methods=('GET', 'POST'))
+def modification_shop():
+    db = get_db()  
+    return render_template('session/modification_shop.html')
+
+@session_bp.route('/modification_portfolio', methods=('GET', 'POST'))
+def modification_portfolio():
+    db = get_db()  
+    return render_template('session/modification_portfolio.html')
