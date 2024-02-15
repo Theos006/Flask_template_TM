@@ -15,7 +15,7 @@
                         </div>
                 </div>
                 <div class="nom_utilisateur">
-                    <p>{{g.recherche.NomUtilisateur}}</p>
+                    <p>{{nom}}</p>
                 </div>
                 <a href="/session/accueil_connecte">
                     <img class="logo_retour_profil" 
@@ -35,13 +35,13 @@
                 <div class="rectangle_bio"><p>{{g.recherche.Biographie}}</p></div>
 
                 <div class="box_rectangles_portfolio_shop">
-                    <a href="/session/portfolio" style="text-decoration: none;">
+                    <a href="{{ url_for('session.portfolio', nom=nom) }}" style="text-decoration: none;">
                         <div class="rectangle_portfolio">
                             <div class="txt_portfolio">Portfolio</div>
                             <div class="apercu">Aperçu portfolio</div>
                         </div>
                     </a>
-                    <a href="/session/shop" style="text-decoration: none;">
+                    <a href="{{ url_for('session.shop', nom=nom) }}" style="text-decoration: none;">
                         <div class="rectangle_shop">
                             <div class="txt_shop">Shop</div>
                             <div class="apercu">Aperçu shop</div>

@@ -38,14 +38,15 @@ def profil_recherche():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/profil_recherche.html')
+    return render_template('session/profil_recherche.html', nom = nom_utilisateur)
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 def portfolio():
     nom_utilisateur = request.args.get('nom')
+    print(nom_utilisateur)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/portfolio.html')
+    return render_template('session/portfolio.html', nom = nom_utilisateur)
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
 def shop():
