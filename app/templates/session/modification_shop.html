@@ -9,10 +9,12 @@
         <div class="bandeau_profil">
             <div class="rectangle_profil"> 
                 <div class="double_cercle">
-                    <div class="cercle_profil"></div>
+                    <div class="cercle_profil">
+                        <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                    </div>
                 </div>
-                <div class="nom_utilisateur">Nom utilisateur - Shop</div>
-                <a href="/session/modification_page_publique">
+                <div class="nom_utilisateur">{{g.user.NomUtilisateur}} - Shop</div>
+                <a href="{{ url_for('session.modification_page_publique', nom=g.user.NomUtilisateur) }}">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                     alt="Logo de retour à la page précédente"

@@ -46,7 +46,7 @@ def portfolio():
     print(nom_utilisateur)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/portfolio.html', nom = nom_utilisateur)
+    return render_template('session/portfolio.html')
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
 def shop():
@@ -62,15 +62,22 @@ def article():
 
 @session_bp.route('/modification_page_publique', methods=('GET', 'POST'))
 def modification_page_publique():
+    nom_utilisateur = request.args.get('nom')
+    print(nom_utilisateur)
     db = get_db()  
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     return render_template('session/modification_page_publique.html')
 
 @session_bp.route('/modification_shop', methods=('GET', 'POST'))
 def modification_shop():
+    nom_utilisateur = request.args.get('nom')
     db = get_db()  
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone() 
     return render_template('session/modification_shop.html')
 
 @session_bp.route('/modification_portfolio', methods=('GET', 'POST'))
 def modification_portfolio():
+    nom_utilisateur = request.args.get('nom')
     db = get_db()  
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     return render_template('session/modification_portfolio.html')

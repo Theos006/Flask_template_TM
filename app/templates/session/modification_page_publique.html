@@ -9,10 +9,12 @@
         <div class="bandeau_profil">
             <div class="rectangle_profil">
                 <div class="double_cercle">
-                    <div class="cercle_profil"></div>
+                    <div class="cercle_profil">
+                        <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                    </div>
                 </div>
                 <div class="nom_utilisateur">
-                    <p>Nom utilisateur</p>
+                    <p>{{ g.user.NomUtilisateur }}</p>
                 </div>
                 <a href="/user/profile">
                     <img class="logo_retour_profil" 
@@ -29,16 +31,16 @@
             </div>
 
             <div class="rectangles_profil">
-                <div class="rectangle_bio"><p>Biographie</p></div>
+                <div class="rectangle_bio"><p>{{ g.user.Biographie }}</p></div>
 
                 <div class="box_rectangles_portfolio_shop">
-                    <a href="/session/modification_portfolio" style="text-decoration: none;">
+                    <a href="{{ url_for('session.modification_portfolio', nom=g.user.NomUtilisateur) }}" style="text-decoration: none;">
                         <div class="rectangle_portfolio">
                             <div class="txt_portfolio">Portfolio</div>
                             <div class="apercu">Aperçu portfolio</div>
                         </div>
                     </a>
-                    <a href="/session/modification_shop" style="text-decoration: none;">
+                    <a href="{{ url_for('session.modification_shop', nom=g.user.NomUtilisateur) }}" style="text-decoration: none;">
                         <div class="rectangle_shop">
                             <div class="txt_shop">Shop</div>
                             <div class="apercu">Aperçu shop</div>
