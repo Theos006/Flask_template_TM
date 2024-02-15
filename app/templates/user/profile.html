@@ -73,10 +73,11 @@
           </label>
 
           <input type="submit" value="Changer mes infos" id="bouton_changement_info">
-
+          {% if g.user.TypeDeCompte == "Createur"%}
           <form class="liste_bouton">
             <button class="bouton" formaction="/session/modification_page_publique">Modification de page ma publique</button>
           </form>  
+          {% endif %}
         </form>
       </div>
     </div>
