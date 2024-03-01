@@ -10,7 +10,9 @@
             <div class="rectangle_profil">
                 <div class="double_cercle">
                     <div class="cercle_profil">
-                        <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                        <div class="container_recherche_pdp_modif">
+                            <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                        </div>
                     </div>
                 </div>
                 <div class="nom_utilisateur">
@@ -50,5 +52,5 @@
             </div>
         </div>
     </body>
-</html>  
+</html>   
     
