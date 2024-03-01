@@ -222,6 +222,22 @@ label{
     margin: 0px 200px 0px 0px;
 }
 
+.nom_utilisateur_portfolio{
+    color: black;
+    font-size: 160%;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0px 100px 0px 0px;
+}
+
+.nom_utilisateur_shop{
+    color: black;
+    font-size: 160%;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0px 150px 0px 0px;
+}
+
 .rectangles_profil{
     gap: 10px;
 }
