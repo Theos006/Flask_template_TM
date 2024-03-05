@@ -21,8 +21,8 @@ def accueil_connecte():
         recherche = request.form['recherche']
         # création d'une liste stockant les 10 id utilisateur dont le nom ressemble le plus à la recherche
         result = db.execute(
-            "SELECT NomUtilisateur FROM Utilisateur WHERE NomUtilisateur LIKE ? LIMIT 10",
-            ('%' + recherche + '%',)
+            "SELECT NomUtilisateur FROM Utilisateur WHERE NomUtilisateur LIKE ? AND TypeDeCompte = ? LIMIT 10",
+            ('%' + recherche + '%','Createur')
         )
         list_nom = [row[0] for row in result.fetchall()]
         
