@@ -56,7 +56,7 @@ def shop():
     return render_template('session/shop.html')
 
 @session_bp.route('/article', methods=('GET', 'POST'))
-def article():
+def article(): 
     db = get_db()  # Call the function to get the database connection
     return render_template('session/article.html')
 
