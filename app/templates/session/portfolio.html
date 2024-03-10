@@ -27,16 +27,11 @@
         </div>
 
         <div class="ligne_portfolio">
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-        </div>
-        <div class="ligne_portfolio">
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
+            {%for image in images%}
+            <div class="carre_portfolio">
+                <img src="{{ url_for('static', filename=image)}}" class="image_porfolio">
+            </div>
+            {%endfor%}
         </div>
     </body>
 </html> 

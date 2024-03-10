@@ -1,11 +1,28 @@
-from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
-)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify)
 from app.utils import *
 from app.db.db import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 import os
+
+#Définition des types de fichiers autorisés afin d'éviter tout fichiers malveillants 
+ALLOWED_EXTENSIONS = {'png','jpeg','jpg'}
+
+#Fonction qui vérifie si l'extension du fichier est valide 
+def fichier_autorise(fichier):
+    return '.' in fichier and \
+        fichier.rsplit('.',1)[1].lower()in ALLOWED_EXTENSIONS
+
+# Routes /user/...
+user_bp = Blueprint('user', __name__, url_prefix='/user')
+
+
+#convertiseur donnée binaire dans le bon format et le stock dans le disque 
+def writeTofile(data, filename):
+    # Convert binary data to proper format and write it on Hard Disk
+    with open(filename, 'wb') as file:
+        file.write(data)
+    print("Stored blob data into: ", filename, "\n")
 
 session_bp = Blueprint('session', __name__, url_prefix='/session')
 
@@ -43,10 +60,11 @@ def profil_recherche():
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 def portfolio():
     nom_utilisateur = request.args.get('nom')
-    print(nom_utilisateur)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/portfolio.html')
+    images = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
+    images = [row[0] for row in images.fetchall()]
+    return render_template('session/portfolio.html', images=images)
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
 def shop():
@@ -54,7 +72,7 @@ def shop():
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     return render_template('session/shop.html')
-
+ 
 @session_bp.route('/article', methods=('GET', 'POST'))
 def article(): 
     db = get_db()  # Call the function to get the database connection
@@ -80,4 +98,20 @@ def modification_portfolio():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/modification_portfolio.html')
+    images = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    images = [row[0] for row in images.fetchall()]
+    if request.method == 'POST' :
+        if 'nouvelle_image_portfolio' in request.files:
+                file = request.files['nouvelle_image_portfolio']
+                if file and fichier_autorise(file.filename):
+                    filename = secure_filename(file.filename)
+                    uploads_folder = os.path.join(current_app.root_path, 'static/images/images_portfolio')
+                    print(uploads_folder)
+                    file_path = os.path.join(uploads_folder, filename).replace('\\','/')
+                    file.save(file_path)
+                    file_path_save = os.path.join('images/images_portfolio', filename).replace('\\','/')
+                    if file_path_save not in images:
+                        db.execute("INSERT INTO ImagePortfolio (IdUtilisateur, Description, Image) VALUES (?,?,?)", (g.user['IdUtilisateur'], 'Description indisponible pour le moment', file_path_save))
+                        db.commit()
+                        return render_template('session/modification_portfolio.html', images=images)
+    return render_template('session/modification_portfolio.html', images=images)

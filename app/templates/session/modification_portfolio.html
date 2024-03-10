@@ -15,7 +15,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="nom_utilisateur_portfolio">{{g.user.NomUtilisateur}} - Modificartion Portfolio</div>
+                <div class="nom_utilisateur_portfolio">{{g.user.NomUtilisateur}} - Modification Portfolio</div>
                 <a href="{{ url_for('session.modification_page_publique', nom=g.user.NomUtilisateur) }}">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
@@ -24,22 +24,21 @@
                 </a>
             </div>
         </div>
-
         <div class="ligne_portfolio">
             <div id="cadre_nouvelle_image_portfolio">
-                <form>
-                    <span>Ajouter une image</span>
-                    <input type="file" id="nouvelle_image_protfolio" name="photo_de_profil" accept="image/png, image/jpeg" />
+                <form method="post" enctype="multipart/form-data">
+                    <label for="nouvelle_image_portfolio" class="custom-file-upload-2">
+                        <span>Ajouter une image</span>
+                        <input type="file" id="nouvelle_image_portfolio" name="nouvelle_image_portfolio" accept="image/png, image/jpeg" />
+                    </label>
+                    <input type="submit">
                 </form>
             </div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div> 
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div> 
-            <div class="carre_portfolio"></div>
-            <div class="carre_portfolio"></div>
+            {%for image in images%}
+                <div class="carre_portfolio">
+                    <img src="{{ url_for('static', filename=image)}}" class="image_porfolio">
+                </div>
+            {%endfor%}
         </div>
 
     </body>
