@@ -158,6 +158,7 @@ label{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     align-items: center;
     justify-content: flex-start;
+    gap: 20px;
 }
 
 
@@ -651,3 +652,17 @@ label{
     border-radius: 35px;
 }
 
+.container_apercu_img{
+    width: 150px;
+    height: 150px;
+    background-color: #ffffff;
+    border-radius: 35px;
+    overflow: hidden;
+}
+
+.apercu_img_portfolio{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+}
