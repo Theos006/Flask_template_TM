@@ -651,3 +651,46 @@ label{
     border-radius: 35px;
 }
 
+.block_article{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.carre_article_image{
+    width: 700px;
+    height: 560px; 
+    background-color: #ffffff;
+    border: 5px solid #F8B98B;
+    border-radius: 35px;
+}
+
+.carre_article_description{
+    width: 200px;
+    height: 440px; 
+    background-color: #ffffff;
+    border: 5px solid #F8B98B;
+    margin: 0px 10px 10px 10px;
+    /* margin: haut bas droite gauche; */
+    border-radius: 35px;
+}
+
+.carre_article_achat{
+    width: 200px;
+    height: 100px; 
+    background-color: #ffffff;
+    border: 5px solid #F8B98B;
+    margin: 10px 10px 10px 10px;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+.txt_prix_article{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 32px;
+    font-size: 160%;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

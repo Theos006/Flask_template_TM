@@ -75,7 +75,9 @@ def shop():
  
 @session_bp.route('/article', methods=('GET', 'POST'))
 def article(): 
-    db = get_db()  # Call the function to get the database connection
+    nom_utilisateur = request.args.get('nom')
+    db = get_db()
+    g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     return render_template('session/article.html')
 
 @session_bp.route('/modification_page_publique', methods=('GET', 'POST'))
@@ -115,3 +117,8 @@ def modification_portfolio():
                         db.commit()
                         return render_template('session/modification_portfolio.html', images=images)
     return render_template('session/modification_portfolio.html', images=images)
+
+@session_bp.route('/qr_code', methods=('GET', 'POST'))
+def qr_code():
+    db = get_db()  
+    return render_template('session/qr_code.html')
