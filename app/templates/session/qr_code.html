@@ -6,6 +6,25 @@
     </head>
 
     <body>
-        <p>Page de paiement, c'est ici qu'on va mettre le qr code</p>
+        <div class="bandeau_profil">
+            <div class="rectangle_profil">
+                <div class="double_cercle">
+                    <div class="cercle_profil"></div>
+                        <div class="container_recherche_pdp">
+                            <img src="{{ url_for('static', filename=g.recherche.PhotoDeProfil )}}" id = "recherche_pdp">
+                        </div>
+                </div>
+                <div class="nom_utilisateur">
+                    <p>Article - paiement</p>
+                </div>
+                <a href="{{ url_for('session.shop', nom=g.user.NomUtilisateur) }}">
+                    <img class="logo_retour_profil" 
+                    src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
+                    alt="Logo de retour à la page précédente"
+                    >
+                </a>
+            </div>
+        </div>
+        <div class="carre_qr_code">qr code</div>
     </body>
 </html>

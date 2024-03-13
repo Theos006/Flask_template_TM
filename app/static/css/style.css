@@ -710,6 +710,16 @@ label{
     text-align: center;
     justify-content: center;
     margin-top: 32px;
+    color: #F8B98B;
     font-size: 160%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.carre_qr_code{
+    width: 300px;
+    height: 300px;
+    border: 5px solid #F8B98B;
+    background-color: #ffffff;
+    border-radius: 35px;
+    margin: 120px 0px 40% 40%;
 }

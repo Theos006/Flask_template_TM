@@ -128,5 +128,7 @@ def modification_portfolio():
 
 @session_bp.route('/qr_code', methods=('GET', 'POST'))
 def qr_code():
-    db = get_db()  
+    nom_utilisateur = request.args.get('nom')
+    db = get_db()
+    g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     return render_template('session/qr_code.html')
