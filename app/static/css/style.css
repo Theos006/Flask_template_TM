@@ -656,50 +656,6 @@ label{
     border-radius: 35px;
 }
 
-<<<<<<< HEAD
-.block_article{
-    display: flex;
-    justify-content: center;
-    margin-top: 120px;
-}
-
-.carre_article_image{
-    width: 700px;
-    height: 560px; 
-    background-color: #ffffff;
-    border: 5px solid #F8B98B;
-    border-radius: 35px;
-}
-
-.carre_article_description{
-    width: 200px;
-    height: 440px; 
-    background-color: #ffffff;
-    border: 5px solid #F8B98B;
-    margin: 0px 10px 10px 10px;
-    /* margin: haut bas droite gauche; */
-    border-radius: 35px;
-}
-
-.carre_article_achat{
-    width: 200px;
-    height: 100px; 
-    background-color: #ffffff;
-    border: 5px solid #F8B98B;
-    margin: 10px 10px 10px 10px;
-    border-radius: 35px;
-    cursor: pointer;
-}
-
-.txt_prix_article{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 32px;
-    font-size: 160%;
-    font-weight: 700;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-=======
 .container_apercu_img{
     width: 150px;
     height: 150px;
@@ -713,5 +669,47 @@ label{
     height: 100%;
     object-fit: cover;
     
->>>>>>> f328b5306a857cc1c9968a1eac65198eddee4428
+}
+
+.carre_article_image{
+    height: 570px;
+    width: 700px;
+    background-color: #ffffff;
+    border-radius: 35px;
+    border: 5px solid #F8B98B;
+}
+
+.block_article{
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.carre_article_description{
+    width: 200px;
+    height: 450px;
+    background-color: #ffffff;
+    margin-left: 10px;
+    border-radius: 35px;
+    border: 5px solid #F8B98B;
+}
+
+.carre_article_achat{
+    width: 200px;
+    height: 100px;
+    background-color: #ffffff;
+    margin: 10px 0px 0px 10px;
+    /*margin: haut bas droite gauche;*/
+    border-radius: 35px;
+    border: 5px solid #F8B98B;
+    cursor: pointer;
+}
+
+.txt_achat_article{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 32px;
+    font-size: 160%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
