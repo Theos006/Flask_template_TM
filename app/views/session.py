@@ -30,7 +30,9 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @login_required
 def accueil_connecte():
     list_nom = ["Admin", "Mirko", "Mathieu", "Moi", "marc"]
-    list_pdp = []  
+    list_pdp = [] 
+    list_img_portfolio = [] 
+    image_portfolio = []
     db = get_db()
     
     if request.method == 'POST':
@@ -44,11 +46,17 @@ def accueil_connecte():
         list_nom = [row[0] for row in result.fetchall()]
         
     for nom in list_nom:
-        image = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-        list_pdp.append(image.fetchone()[0])  
+        g.nom = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
+        image_pdp = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
+        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'], ))
+        image_portfolio = [row[0] for row in image_portfolio.fetchall()]
+        print(image_portfolio)
+        list_pdp.append(image_pdp.fetchone()[0])  
+        if image_portfolio != None : 
+            list_img_portfolio.append(image_portfolio)
 
-    print(list_nom)
-    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp)
+    print(list_img_portfolio)
+    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_img_portfolio=list_img_portfolio)
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 def profil_recherche():

@@ -158,6 +158,7 @@ label{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     align-items: center;
     justify-content: flex-start;
+    gap: 20px;
 }
 
 
@@ -388,7 +389,11 @@ label{
 }
 
 .box_shop{
+    display: flex;
+    align-content: flex-start;
+    align-items: center;
     justify-content: center;
+    gap: 20px;
     margin-left: 18%;
 }
 
@@ -651,6 +656,7 @@ label{
     border-radius: 35px;
 }
 
+<<<<<<< HEAD
 .block_article{
     display: flex;
     justify-content: center;
@@ -693,4 +699,19 @@ label{
     font-size: 160%;
     font-weight: 700;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+=======
+.container_apercu_img{
+    width: 150px;
+    height: 150px;
+    background-color: #ffffff;
+    border-radius: 35px;
+    overflow: hidden;
+}
+
+.apercu_img_portfolio{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+>>>>>>> f328b5306a857cc1c9968a1eac65198eddee4428
 }
