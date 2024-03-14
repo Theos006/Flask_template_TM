@@ -246,20 +246,41 @@ label{
 
 .placement_profil{
     display: flex;
+    align-items: center;
+    height: 100vh;
 }
 
 .reseaux_sociaux{
     display: flex;
-    background: hsla(31, 90%, 88%, 1);
-    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
-    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
-    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
+    background-color: #ffffff;
     width: 230px;
     height: 700px;
     margin-top: 3%;
     margin-left: 6%;
     border-radius: 2.5%;
+}
+
+.box_reseaux_sociaux{
+    display: flex;
+    align-items: center;
+    height: 100hv;
+    height: 70px;
+    width: 230px;
+}
+
+.cercle_reseaux_sociaux{
+    background-color: #EE9250;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.txt_reseaux_sociaux{
+    font-size: 120%;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 10px;
+    vertical-align: middle;
 }
 
 .rectangle_bio{
@@ -400,6 +421,10 @@ label{
 .ligne_shop{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2% 0% 2% 2%;
+    gap: 30px;
 }
 
 .rectangle_article{
