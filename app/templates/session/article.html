@@ -10,12 +10,14 @@
             <div class="rectangle_profil">
                 <div class="double_cercle">
                     <div class="cercle_profil"></div>
-                    <div class="cercle_photo_profil"></div>
+                        <div class="container_recherche_pdp">
+                            <img src="{{ url_for('static', filename=g.recherche.PhotoDeProfil )}}" id = "recherche_pdp">
+                        </div>
                 </div>
                 <div class="nom_utilisateur">
                     <p>Article</p>
                 </div>
-                <a href="/session/accueil_connecte">
+                <a href="{{ url_for('session.shop', nom=g.user.NomUtilisateur) }}">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                     alt="Logo de retour à la page précédente"
@@ -23,5 +25,18 @@
                 </a>
             </div>
         </div>
+
+        <div class="block_article">
+            <div class="carre_article_image">image(s) du produit</div>
+            <div>
+                <div class="carre_article_description">Description de l'article</div>
+                <a href="/session/qr_code" style="text-decoration: none;">
+                    <div class="carre_article_achat">
+                        <div class="txt_achat_article">Acheter</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
     </body>
 </html>
