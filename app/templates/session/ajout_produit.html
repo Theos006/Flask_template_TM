@@ -4,7 +4,46 @@
         <title>{% block title %}{% endblock %}Modification de ma boutique</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
+    <div class="bandeau_profil">
+        <div class="rectangle_profil"> 
+            <div class="double_cercle">
+                <div class="cercle_profil">
+                    <div class="container_recherche_pdp_modif">
+                        <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                    </div>
+                </div>
+            </div>
+            <div class="nom_utilisateur_shop">{{g.user.NomUtilisateur}} - Ajout d'un produit</div>
+            <a href="{{ url_for('session.modification_page_publique', nom=g.user.NomUtilisateur) }}">
+                <img class="logo_retour_profil" 
+                src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
+                alt="Logo de retour à la page précédente"
+                >
+            </a>
+        </div>
+    </div>
 
-    <body>
-        <p>hello wolrd</p>
-    </body>  
+    <div id ="cadre_info_mon_compte">
+        <div id="info_mon_compte">
+          <form method="post" class="formulaire_changement_info" enctype="multipart/form-data">
+            <div class="changement_une_info">
+              <label for="nom_nouveau_produit">Nom du produit : </label>
+              <input name="nom_nouveau_produit" class="input_mon_compte">
+            </div>
+  
+            <div class="changement_une_info">
+              <label for="description_nouveau_produit">Description du produit : </label>
+              <input name="description_nouveau_produit" class="input_mon_compte">
+            </div>
+  
+            <label for="photo_nouveau_produit">Photo du produit :</label>
+
+            <label for="photo_nouveau_produit" class="ajout_image_produit">
+              <span>Choisir un fichier</span>
+              <input type="file" name="photo_nouveau_produit" accept="image/png, image/jpeg" />
+            </label>
+  
+            <input type="submit" value="Ajouter ce produit" id="bouton_changement_info"> 
+          </form>
+        </div>
+      </div> 

@@ -772,3 +772,25 @@ label{
     font-size: 120%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.ajout_image_produit{
+    display: inline-block;
+    position: relative;
+    overflow: hidden; 
+}
+
+.ajout_image_produit input #file-upload-button{
+    font-size: 75%;
+    border: none;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1);
+    padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 100px;
+    color: gray;
+}
+
