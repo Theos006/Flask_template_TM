@@ -15,7 +15,7 @@
                         </div>
                 </div>
                 <div class="nom_utilisateur">{{g.recherche.NomUtilisateur}} - Shop</div>
-                <a href="{{ url_for('session.profil_recherche', nom=g.user.NomUtilisateur) }}">
+                <a href="{{ url_for('session.profil_recherche', nom=g.recherche.NomUtilisateur) }}">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                     alt="Logo de retour à la page précédente"
