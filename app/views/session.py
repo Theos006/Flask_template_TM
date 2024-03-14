@@ -123,3 +123,10 @@ def modification_portfolio():
                         db.commit()
                         return render_template('session/modification_portfolio.html', images=images)
     return render_template('session/modification_portfolio.html', images=images)
+
+@session_bp.route('/ajout_produit', methods=('GET', 'POST'))
+def ajout_produit():
+    nom_utilisateur = request.args.get('nom')
+    db = get_db()  
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone() 
+    return render_template('session/ajout_produit.html')
