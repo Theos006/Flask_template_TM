@@ -32,6 +32,7 @@ def accueil_connecte():
     list_nom = ["Admin", "Mirko", "Mathieu", "Moi", "marc"]
     list_pdp = [] 
     list_img_portfolio = [] 
+    list_img_shop = []
     image_portfolio = []
     db = get_db()
     
@@ -48,15 +49,17 @@ def accueil_connecte():
     for nom in list_nom:
         g.nom = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
         image_pdp = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'], ))
+        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 4", (g.nom['IdUtilisateur'], ))
         image_portfolio = [row[0] for row in image_portfolio.fetchall()]
-        print(image_portfolio)
+        image_shop = db.execute("SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'],))
+        image_shop = [row[0] for row in image_shop.fetchall()]
         list_pdp.append(image_pdp.fetchone()[0])  
         if image_portfolio != None : 
             list_img_portfolio.append(image_portfolio)
+        if image_shop != None :
+            list_img_shop.append(image_shop)
 
-    print(list_img_portfolio)
-    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_img_portfolio=list_img_portfolio)
+    return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_img_portfolio=list_img_portfolio, list_img_shop=list_img_shop)
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
 @login_required

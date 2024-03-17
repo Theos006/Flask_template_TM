@@ -38,6 +38,11 @@
                 <img src="{{ url_for('static', filename=image )}}", class="apercu_img_portfolio">
             </div>
             {% endfor %}
+            {%for image in list_img_shop[list_nom.index(nom)]%}
+            <div class="container_apercu_img">
+                <img src="{{ url_for('static', filename=image )}}", class="apercu_img_portfolio">
+            </div>
+            {% endfor %}
         </a>
         {% endfor %}  
     </div>
