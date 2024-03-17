@@ -29,8 +29,11 @@
         <div class="placement_profil">
             <div class="reseaux_sociaux">
                 <div class="box_reseaux_sociaux">
-                    <div class="cercle_reseaux_sociaux"></div>
-                    <div class="txt_reseaux_sociaux">txt</div>
+                    {% for reseau in list_reseaux %}
+                        <a href={{reseau[1]}}>
+                            <p>{{reseau[0]}}</p>
+                        </a>
+                    {% endfor %} 
                 </div>
             </div>
 

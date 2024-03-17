@@ -34,6 +34,7 @@ def accueil_connecte():
     list_img_portfolio = [] 
     list_img_shop = []
     image_portfolio = []
+
     db = get_db()
     
     if request.method == 'POST':
@@ -67,7 +68,41 @@ def profil_recherche():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/profil_recherche.html', nom = nom_utilisateur)
+
+    list_reseaux = []
+    reseau = db.execute('SELECT X FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    print(reseau)
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["X",lien])
+    reseau = db.execute('SELECT Instagram FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["Instagram",lien])
+    reseau = db.execute('SELECT Youtube FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["Youtube",lien])
+    reseau = db.execute('SELECT Discord FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["Discord",lien])
+    reseau = db.execute('SELECT Twitch FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["Twitch",lien])
+    reseau = db.execute('SELECT TikTok FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [] and reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["Tiktok",lien])
+
+    return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux)
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 @login_required
@@ -109,10 +144,41 @@ def article():
 @login_required
 def modification_page_publique():
     nom_utilisateur = request.args.get('nom')
-    print(nom_utilisateur)
     db = get_db()  
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/modification_page_publique.html')
+    list_reseaux = []
+    reseau = db.execute('SELECT X FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None] :
+        lien = reseau[0]
+        list_reseaux.append(["X",lien])
+    reseau = db.execute('SELECT Instagram FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None]  :
+        lien = reseau[0]
+        list_reseaux.append(["Instagram",lien])
+    reseau = db.execute('SELECT Youtube FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None]  :
+        lien = reseau[0]
+        list_reseaux.append(["Youtube",lien])
+    reseau = db.execute('SELECT Discord FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None]  :
+        lien = reseau[0]
+        list_reseaux.append(["Discord",lien])
+    reseau = db.execute('SELECT Twitch FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None]  :
+        lien = reseau[0]
+        list_reseaux.append(["Twitch",lien])
+    reseau = db.execute('SELECT TikTok FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
+    reseau = [row[0] for row in reseau.fetchall()]
+    if reseau != [None]  :
+        lien = reseau[0]
+        list_reseaux.append(["Tiktok",lien])
+ 
+    return render_template('session/modification_page_publique.html', list_reseaux = list_reseaux)
 
 @session_bp.route('/modification_shop', methods=('GET', 'POST'))
 @login_required

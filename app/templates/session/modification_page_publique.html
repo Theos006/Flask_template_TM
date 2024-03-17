@@ -30,6 +30,11 @@
         <div class="placement_profil">
             <div class="reseaux_sociaux"> 
                 <a href="{{ url_for('session.ajout_lien', nom=g.user.NomUtilisateur) }}" class ="ajout_lien">Modifier mes réseaux</a>
+                {% for reseau in list_reseaux %}
+                    <a href={{reseau[1]}}>
+                        <p>{{reseau[0]}}</p>
+                    </a>
+                {% endfor %} 
             </div>
 
             <div class="rectangles_profil">

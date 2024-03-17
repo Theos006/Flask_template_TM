@@ -254,6 +254,7 @@ label{
 
 .reseaux_sociaux{
     display: flex;
+    flex-direction: column;
     background-color: #ffffff;
     width: 230px;
     height: 700px;
@@ -264,6 +265,7 @@ label{
 
 .box_reseaux_sociaux{
     display: flex;
+    flex-direction: column;
     align-items: center;
     height: 100hv;
     height: 70px;
