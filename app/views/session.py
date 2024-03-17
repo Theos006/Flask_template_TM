@@ -98,9 +98,12 @@ def shop():
 @login_required
 def article(): 
     nom_utilisateur = request.args.get('nom')
+    nom_produit = request.args.get('nom_produit')
+    print(nom_produit)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/article.html')
+    g.produit = db.execute('SELECT * FROM Produit WHERE NomProduit = ? AND IdUtilisateur = ?', (nom_produit,g.recherche['IdUtilisateur'])).fetchone()
+    return render_template('session/article.html', nom_produit=nom_produit)
 
 @session_bp.route('/modification_page_publique', methods=('GET', 'POST'))
 @login_required

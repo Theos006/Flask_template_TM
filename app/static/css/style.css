@@ -721,7 +721,14 @@ label{
     width: 700px;
     background-color: #ffffff;
     border-radius: 35px;
+    overflow: hidden;
     border: 5px solid #F8B98B;
+}
+
+.carre_article_image img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
 }
 
 .block_article{
@@ -731,32 +738,55 @@ label{
 }
 
 .carre_article_description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
     width: 200px;
     height: 450px;
     background-color: #ffffff;
     margin-left: 10px;
     border-radius: 35px;
     border: 5px solid #F8B98B;
+    overflow-wrap: break-word;
+}
+
+.carre_article_description p {
+    width: 200px;
+    height: 450px;
+    overflow-wrap: break-word;
+    text-decoration: none;
+    color:grey;
+    font-size: 120%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
 }
 
 .carre_article_achat{
     width: 200px;
     height: 100px;
-    background-color: #ffffff;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1);
     margin: 10px 0px 0px 10px;
     /*margin: haut bas droite gauche;*/
     border-radius: 35px;
     border: 5px solid #F8B98B;
     cursor: pointer;
+    
 }
 
 .txt_achat_article{
     display: flex;
+    flex-direction: column;
     text-align: center;
-    justify-content: center;
-    margin-top: 32px;
-    color: #F8B98B;
+    justify-content: flex-start;
     font-size: 160%;
+    text-decoration: none;
+    color:grey ;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

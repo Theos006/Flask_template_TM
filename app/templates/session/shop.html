@@ -26,7 +26,7 @@
 
         <div class="ligne_shop"> 
                 {% for produit in produits %}
-                <a href="/session/article" class="rectangle_article">
+                <a href="{{ url_for('session.article', nom=g.recherche.NomUtilisateur , nom_produit=produit[0]) }}" class="rectangle_article">
                     <div>
                         <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
                         <div class="description_article"><p>{{ produit[0] }}</p></div>
