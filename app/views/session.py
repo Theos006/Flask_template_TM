@@ -72,7 +72,6 @@ def profil_recherche():
     list_reseaux = []
     reseau = db.execute('SELECT X FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    print(reseau)
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
         list_reseaux.append(["X",lien])
