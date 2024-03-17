@@ -59,6 +59,7 @@ def accueil_connecte():
     return render_template('session/accueil_connecte.html', list_nom=list_nom, list_pdp=list_pdp, list_img_portfolio=list_img_portfolio)
 
 @session_bp.route('/profil_recherche', methods=('GET', 'POST'))
+@login_required
 def profil_recherche():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
@@ -66,6 +67,7 @@ def profil_recherche():
     return render_template('session/profil_recherche.html', nom = nom_utilisateur)
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
+@login_required
 def portfolio():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
@@ -75,6 +77,7 @@ def portfolio():
     return render_template('session/portfolio.html', images=images)
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
+@login_required
 def shop():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
@@ -82,6 +85,7 @@ def shop():
     return render_template('session/shop.html')
  
 @session_bp.route('/article', methods=('GET', 'POST'))
+@login_required
 def article(): 
     nom_utilisateur = request.args.get('nom')
     db = get_db()
@@ -89,6 +93,7 @@ def article():
     return render_template('session/article.html')
 
 @session_bp.route('/modification_page_publique', methods=('GET', 'POST'))
+@login_required
 def modification_page_publique():
     nom_utilisateur = request.args.get('nom')
     print(nom_utilisateur)
@@ -97,6 +102,7 @@ def modification_page_publique():
     return render_template('session/modification_page_publique.html')
 
 @session_bp.route('/modification_shop', methods=('GET', 'POST'))
+@login_required
 def modification_shop():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
@@ -104,6 +110,7 @@ def modification_shop():
     return render_template('session/modification_shop.html')
 
 @session_bp.route('/modification_portfolio', methods=('GET', 'POST'))
+@login_required
 def modification_portfolio():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
@@ -127,8 +134,26 @@ def modification_portfolio():
     return render_template('session/modification_portfolio.html', images=images)
 
 @session_bp.route('/ajout_produit', methods=('GET', 'POST'))
+@login_required
 def ajout_produit():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone() 
+    if request.method  == 'POST':
+        nom_nouveau_produit=request.form['nom_nouveau_produit']
+        description_nouveau_produit=request.form['description_nouveau_produit']
+        prix_nouveau_produit=request.form['prix_nouveau_produit']
+
+        if nom_nouveau_produit and description_nouveau_produit and prix_nouveau_produit:
+            if 'photo_nouveau_produit' in request.files:
+                file = request.files['photo_nouveau_produit']
+                if file and fichier_autorise(file.filename):
+                    filename = secure_filename(file.filename)
+                    uploads_folder = os.path.join(current_app.root_path, 'static/images/images_shop')
+                    file_path = os.path.join(uploads_folder, filename)
+                    file.save(file_path)
+                    file_path_save = os.path.join('images/images_shop/',filename)
+                    db.execute("INSERT INTO Produit (IdUtilisateur, NomProduit, Prix, DescriptionProduit, ImageProduit) VALUES (?,?,?,?,?)", (g.user['IdUtilisateur'], nom_nouveau_produit, prix_nouveau_produit, description_nouveau_produit, file_path_save))
+                    db.commit()
+                    return render_template('session/ajout_produit.html')
     return render_template('session/ajout_produit.html')
