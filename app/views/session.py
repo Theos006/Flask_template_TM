@@ -82,7 +82,14 @@ def shop():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    return render_template('session/shop.html')
+    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    nom_produit = [row[0] for row in nom_produit.fetchall()]
+    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    image_produit = [row[0] for row in image_produit.fetchall()]
+       
+    produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+    
+    return render_template('session/shop.html', produits=produits)
  
 @session_bp.route('/article', methods=('GET', 'POST'))
 @login_required
@@ -107,7 +114,15 @@ def modification_shop():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone() 
-    return render_template('session/modification_shop.html')
+    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    nom_produit = [row[0] for row in nom_produit.fetchall()]
+    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    image_produit = [row[0] for row in image_produit.fetchall()]
+       
+    produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+    
+    return render_template('session/modification_shop.html', produits=produits)
+
 
 @session_bp.route('/modification_portfolio', methods=('GET', 'POST'))
 @login_required

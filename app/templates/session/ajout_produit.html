@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="nom_utilisateur_shop">{{g.user.NomUtilisateur}} - Ajout d'un produit</div>
-            <a href="{{ url_for('session.modification_page_publique', nom=g.user.NomUtilisateur) }}">
+            <a href="{{ url_for('session.modification_shop', nom=g.user.NomUtilisateur) }}">
                 <img class="logo_retour_profil" 
                 src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                 alt="Logo de retour à la page précédente"

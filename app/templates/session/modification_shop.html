@@ -8,10 +8,10 @@
     <body>
         <div class="bandeau_profil">
             <div class="rectangle_profil"> 
-                <div class="double_cercle">
+                <div class="double_cercle"> 
                     <div class="cercle_profil">
                         <div class="container_recherche_pdp_modif">
-                            <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                            <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id="recherche_pdp">
                         </div>
                     </div>
                 </div>
@@ -24,21 +24,20 @@
                 </a>
             </div>
         </div>
-
-        <div class="box_shop"> 
-            <div id="cadre_nouveau_produit">
-                <a href="{{ url_for('session.ajout_produit', nom=g.user.NomUtilisateur) }}" id="nouveau_produit">Ajouter un produit</a>
-            </div>
-            <div class="ligne_shop">
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-             
+            <div class="ligne_shop"> 
+                <div id="cadre_nouveau_produit">
+                    <a href="{{ url_for('session.ajout_produit', nom=g.user.NomUtilisateur) }}" id="nouveau_produit">Ajouter un produit</a>
+                </div>
+                    {% for produit in produits %}
+                    <a href="/session/article" class="rectangle_article">
+                        <div>
+                            <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
+                            <div class="description_article"><p>{{ produit[0] }}</p></div>
+                        </div>
+                    </a>
+                    {% endfor %}  
+                
             </div>  
-        </div>
 
     </body> 
 </html>

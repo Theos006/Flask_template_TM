@@ -24,48 +24,17 @@
             </div>
         </div>
 
-        <div class="box_shop">
-            <div class="ligne_shop">
+        <div class="ligne_shop"> 
+                {% for produit in produits %}
                 <a href="/session/article" class="rectangle_article">
                     <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
+                        <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
+                        <div class="description_article"><p>{{ produit[0] }}</p></div>
                     </div>
                 </a>
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-            </div>
-            <div class="ligne_shop">
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-                <a href="/session/article" class="rectangle_article">
-                    <div>
-                        <div class="photo_article"></div>
-                        <div class="description_article"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                {% endfor %}  
+            
+        </div>  
 
     </body>
 </html>
