@@ -178,3 +178,71 @@ def ajout_produit():
                     db.commit()
                     return render_template('session/ajout_produit.html')
     return render_template('session/ajout_produit.html')
+
+@session_bp.route('/ajout_lien', methods=('GET', 'POST'))
+@login_required
+def ajout_lien():
+    nom_utilisateur = request.args.get('nom')
+    db = get_db()  
+    g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone() 
+    if request.method  == 'POST':
+        g.reseau = db.execute('SELECT * FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],)).fetchone() 
+        nom_reseau = request.form['nom_réseau']
+        lien = request.form['lien']
+
+        if g.reseau != None :
+            if nom_reseau and lien :
+                if nom_reseau == "X" :
+                    db.execute('UPDATE Reseaux SET X = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Instagram" :
+                    db.execute('UPDATE Reseaux SET Instagram = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Youtube" :
+                    db.execute('UPDATE Reseaux SET Youtube = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Discord" :
+                    db.execute('UPDATE Reseaux SET Discord = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Twitch" :
+                    db.execute('UPDATE Reseaux SET Twitch = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "TikTok" :
+                    db.execute('UPDATE Reseaux SET TikTok = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                
+        else :
+            if nom_reseau and lien :
+                db.execute("INSERT INTO Reseaux (IdUtilisateur, X, Instagram, Youtube, Discord, Twitch, TikTok) VALUES (?,?,?,?,?,?,?)", (g.user['IdUtilisateur'], None, None, None, None, None, None))
+                db.commit()
+                if nom_reseau == "X" :
+                    db.execute('UPDATE Reseaux SET X = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Instagram" :
+                    db.execute('UPDATE Reseaux SET Instagram = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Youtube" :
+                    db.execute('UPDATE Reseaux SET Youtube = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Discord" :
+                    db.execute('UPDATE Reseaux SET Discord = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "Twitch" :
+                    db.execute('UPDATE Reseaux SET Twitch = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+                if nom_reseau == "TikTok" :
+                    db.execute('UPDATE Reseaux SET TikTok = ? WHERE IdUtilisateur = ?', (lien, g.user['IdUtilisateur']))
+                    db.commit()
+                    return render_template('session/ajout_lien.html')
+    return render_template('session/ajout_lien.html')

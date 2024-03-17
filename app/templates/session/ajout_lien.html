@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}Modification de ma boutique</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <div class="bandeau_profil">
+        <div class="rectangle_profil"> 
+            <div class="double_cercle">
+                <div class="cercle_profil">
+                    <div class="container_recherche_pdp_modif">
+                        <img src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "recherche_pdp">
+                    </div>
+                </div>
+            </div>
+            <div class="nom_utilisateur_shop">{{g.user.NomUtilisateur}} - Modifier mes réseaux</div>
+            <a href="{{ url_for('session.modification_page_publique', nom=g.user.NomUtilisateur) }}">
+                <img class="logo_retour_profil" 
+                src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
+                alt="Logo de retour à la page précédente"
+                >
+            </a>
+        </div>
+    </div>
+
+    <div id ="cadre_info_mon_compte">
+        <div id="info_mon_compte"> 
+          <form method="post" class="formulaire_changement_info" enctype="multipart/form-data">
+            <div class="changement_une_info">
+                <label for="nom_réseau">Réseau : </label>
+                <select name="nom_réseau" id="nom_réseau">
+                    <option value="">Choisissez une option</option>
+                    <option value=X>X</option>
+                    <option value=Instagram>Instagram</option>
+                    <option value=Youtube>Youtube</option>
+                    <option value=Discord>Discord</option>
+                    <option value=Twitch>Twitch</option>
+                    <option value=Tiktok>Tiktok</option>
+                  </select>
+              </div>
+            <div class="changement_une_info">
+              <label for="lien">Lien : </label> 
+              <input name="lien" class="input_mon_compte">
+            </div>
+  
+            <input type="submit" value="Changer ce lien" id="bouton_changement_info"> 
+          </form>
+        </div>
+      </div> 

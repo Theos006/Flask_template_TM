@@ -28,8 +28,8 @@
         </div>
 
         <div class="placement_profil">
-            <div class="reseaux_sociaux">
-                <p>Liens vers les réseaux sociaux</p>
+            <div class="reseaux_sociaux"> 
+                <a href="{{ url_for('session.ajout_lien', nom=g.user.NomUtilisateur) }}" class ="ajout_lien">Modifier mes réseaux</a>
             </div>
 
             <div class="rectangles_profil">

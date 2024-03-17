@@ -29,12 +29,12 @@
                     <a href="{{ url_for('session.ajout_produit', nom=g.user.NomUtilisateur) }}" id="nouveau_produit">Ajouter un produit</a>
                 </div>
                     {% for produit in produits %}
-                    <a href="/session/article" class="rectangle_article">
+                    <div class="rectangle_article" style="cursor:default;">
                         <div>
                             <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
                             <div class="description_article"><p>{{ produit[0] }}</p></div>
                         </div>
-                    </a>
+                    </div>
                     {% endfor %}  
                 
             </div>  
