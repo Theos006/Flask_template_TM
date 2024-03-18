@@ -15,9 +15,9 @@
                         </div>
                 </div>
                 <div class="nom_utilisateur">
-                    <p>Article - paiement</p>
+                    <p>Acheter {{g.produit.NomProduit}}</p>
                 </div>
-                <a href="{{ url_for('session.shop', nom=g.user.NomUtilisateur) }}">
+                <a href="{{ url_for('session.article', nom=g.user.NomUtilisateur, nom_produit=g.produit.NomProduit) }}">
                     <img class="logo_retour_profil" 
                     src="{{ url_for('static', filename='images/Retour_accueil_blanc.png') }}"
                     alt="Logo de retour à la page précédente"
@@ -25,6 +25,12 @@
                 </a>
             </div>
         </div>
-        <div class="carre_qr_code">qr code</div>
-    </body>
+        <div class="rectangle_payement">
+            <div class="carre_qr_code">
+                <img src="{{ url_for('static', filename=g.recherche.QrCodeTwint) }}" id="image_QR">
+            </div>
+            <p id="prix">A payer : {{g.produit.Prix}} CHF</p>
+            <p id="prix">Merci d'ajouter l'adresse de livraison et le nom du produit dans la section "message" du payement Twint</p>
+        </div>
+    </body> 
 </html>

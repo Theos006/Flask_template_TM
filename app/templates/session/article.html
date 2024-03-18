@@ -34,11 +34,11 @@
                 <div class="carre_article_description">
                     <p>{{ g.produit.DescriptionProduit }}</p>
                 </div>
-                <a href="/session/qr_code" style="text-decoration: none;">
+                <a href="{{ url_for('session.qr_code', nom=g.recherche.NomUtilisateur, nom_produit=g.produit.NomProduit) }}" style="text-decoration: none;">
                     <div class="carre_article_achat">
                         <div class="txt_achat_article">
                             <p>Acheter {{ g.produit.Prix }} CHF</p>
-                        </div>
+                        </div> 
                     </div>
                 </a>
             </div>

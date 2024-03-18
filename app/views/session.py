@@ -133,7 +133,6 @@ def shop():
 def article(): 
     nom_utilisateur = request.args.get('nom')
     nom_produit = request.args.get('nom_produit')
-    print(nom_produit)
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     g.produit = db.execute('SELECT * FROM Produit WHERE NomProduit = ? AND IdUtilisateur = ?', (nom_produit,g.recherche['IdUtilisateur'])).fetchone()
@@ -311,3 +310,14 @@ def ajout_lien():
                     db.commit()
                     return render_template('session/ajout_lien.html')
     return render_template('session/ajout_lien.html')
+
+@session_bp.route('/qr_code', methods=('GET', 'POST'))
+@login_required
+def qr_code(): 
+    nom_utilisateur = request.args.get('nom')
+    nom_produit = request.args.get('nom_produit')
+    db = get_db()
+    g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
+    print(g.recherche['QrCodeTwint'])
+    g.produit = db.execute('SELECT * FROM Produit WHERE NomProduit = ? AND IdUtilisateur = ?', (nom_produit,g.recherche['IdUtilisateur'])).fetchone()
+    return render_template('session/qr_code.html')
