@@ -40,7 +40,6 @@ def show_profile():
         old_mdp=request.form['old_mdp']
         new_mdp1=request.form['new_mdp1']
         new_mdp2=request.form['new_mdp2']
-        new_compte_bancaire=request.form['new_compte_bancaire']
         type_de_compte=request.form['type_de_compte']
   
         
@@ -66,10 +65,6 @@ def show_profile():
                 error = f"L'adresse {new_email} est déjà pris."
                 flash(error)
             return redirect(url_for('user.show_profile'))
-        if len(new_compte_bancaire)>=1 :
-            db.execute("UPDATE Utilisateur SET CompteBancaire = ? WHERE IdUtilisateur = ?",(new_compte_bancaire,user_id))
-            db.commit()
-            return redirect(url_for('user.show_profile'))
 
         if len(old_mdp)>=1 and len(new_mdp1)>=1 and len(new_mdp2)>= 1 :
             if check_password_hash(g.user['MotDePasse'],old_mdp):
@@ -89,7 +84,18 @@ def show_profile():
             db.commit()
             return redirect(url_for('user.show_profile'))
          
-        #On vérifie que l'utilisateur upload un fichier
+        if 'ajout_QR' in request.files:
+            file = request.files['ajout_QR']
+            if file and fichier_autorise(file.filename):
+                filename = secure_filename(file.filename)
+                uploads_folder = os.path.join(current_app.root_path, 'static/images/images_QR')
+                file_path = os.path.join(uploads_folder, filename)
+                file.save(file_path)
+                file_path_save = os.path.join('images/images_QR/',filename)
+                db.execute("UPDATE Utilisateur SET QrCodeTwint = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
+                db.commit()     
+            return render_template('user/profile.html')
+        
         if 'photo_de_profil' in request.files:
             file = request.files['photo_de_profil']
             if file and fichier_autorise(file.filename):
@@ -101,6 +107,7 @@ def show_profile():
                 db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
                 db.commit()     
             return render_template('user/profile.html')
+        
     return render_template('user/profile.html')
 
 

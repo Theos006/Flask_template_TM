@@ -876,3 +876,55 @@ label{
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1 );
     color: gray;
 }
+
+#cadre_QR{
+    display: flex;
+    gap: 3%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadre_ajout_QR {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+    width: 40%;
+    height: 35%;
+}
+
+.cadre_ajout_QR input {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.cadre_ajout_QR span {
+    border: none;
+    background: hsla(34, 88%, 97%, 1);
+    background: linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(34, 88%, 97%, 1) 0%, hsla(31, 90%, 88%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#FEF8F0", endColorstr="#FCE1C4", GradientType=1);
+    padding: 10px 15px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 25px;
+    color: gray;
+}
+
+#apercu_QR{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.apercu_QR_container{
+    width: 200px; 
+    height: 200px;
+    overflow: hidden;
+}

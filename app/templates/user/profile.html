@@ -60,17 +60,18 @@
             <input name="new_compte_bancaire" class="input_mon_compte"
             placeholder="Nouveau compte bancaire">
           </div>
-
-          <label for="photo_de_profil">Choissiez un QR code Twint</label>
-
-          <div class="square-container">
-            <img  src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "profil_pdp">
-          </div>
-
-          <label for="photo_de_profil" class="custom-file-upload">
-            <span>Choisir un fichier</span>
-            <input type="file" id="photo_de_profil" name="photo_de_profil" />
-          </label>
+          {% if g.user.TypeDeCompte == "Createur"%}
+            <label for="photo_de_profil">Choissiez un QR code Twint</label>
+            <div id="cadre_QR">
+              <div class="apercu_QR_container">
+                <img  src="{{ url_for('static', filename=g.user.QrCodeTwint )}}" id = "apercu_QR">
+              </div>
+              <label for="photo_de_profil" class="cadre_ajout_QR">
+                <span>Choisir un fichier</span>
+                <input type="file" id="ajout_QR" name="ajout_QR" />
+              </label>
+            </div>
+          {% endif %}
 
           <label for="photo_de_profil">Choissisez une photo de profil</label>
 
@@ -86,7 +87,7 @@
           <input type="submit" value="Changer mes infos" id="bouton_changement_info">
           {% if g.user.TypeDeCompte == "Createur"%}
           <form class="liste_bouton">
-            <button class="bouton" formaction="/session/modification_page_publique?nom={{ g.user.NomUtilisateur }}">Modification de page ma publique</button>
+            <button class="bouton" formaction="/session/modification_page_publique?nom={{ g.user.NomUtilisateur }}">Modification de ma page publique</button>
 
           </form>  
           {% endif %}
