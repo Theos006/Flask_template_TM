@@ -50,7 +50,7 @@ def accueil_connecte():
     for nom in list_nom:
         g.nom = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
         image_pdp = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 4", (g.nom['IdUtilisateur'], ))
+        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'], ))
         image_portfolio = [row[0] for row in image_portfolio.fetchall()]
         image_shop = db.execute("SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'],))
         image_shop = [row[0] for row in image_shop.fetchall()]

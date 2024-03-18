@@ -27,18 +27,6 @@
           </div>
 
           <div class="changement_une_info">
-            <label for="new_biographie">Biographie : </label>
-            <input name="new_biographie" class="input_mon_compte"
-            placeholder="{{g.user.Biographie}}" >
-          </div>
-          
-          <div class="changement_une_info">
-            <label for = "new_email">Email : {{g.user.Email}}</label>
-            <input name="new_email" class="input_mon_compte"
-            placeholder="Nouvelle email" >
-          </div>
-          
-          <div class="changement_une_info">
             <label for = "old_mdp">Changer de mot de passe</label>
             <input name="old_mdp" class="input_mon_compte"
             placeholder="Ancien mot de passe">
@@ -49,9 +37,15 @@
           </div>
 
           <div class="changement_une_info">
-            <label for="new_compte_bancaire">Compte bancaire : {{g.user.CompteBancaire}}</label>
-            <input name="new_compte_bancaire" class="input_mon_compte"
-            placeholder="Nouveau compte bancaire">
+            <label for = "new_email">Email : {{g.user.Email}}</label>
+            <input name="new_email" class="input_mon_compte"
+            placeholder="Nouvelle adresse Email" >
+          </div>
+
+          <div class="changement_une_info">
+            <label for="new_biographie">Biographie : </label>
+            <input name="new_biographie" class="input_mon_compte"
+            placeholder="{{g.user.Biographie}}" >
           </div>
 
           <label for="type_de_compte">Type de compte : {{g.user.TypeDeCompte}}</label>
@@ -60,6 +54,23 @@
             <option value=Client>Client</option>
             <option value=Createur>Créateur</option>
           </select>
+
+          <div class="changement_une_info">
+            <label for="new_compte_bancaire">Compte bancaire : {{g.user.CompteBancaire}}</label>
+            <input name="new_compte_bancaire" class="input_mon_compte"
+            placeholder="Nouveau compte bancaire">
+          </div>
+
+          <label for="photo_de_profil">Choissiez un QR code Twint</label>
+
+          <div class="square-container">
+            <img  src="{{ url_for('static', filename=g.user.PhotoDeProfil )}}" id = "profil_pdp">
+          </div>
+
+          <label for="photo_de_profil" class="custom-file-upload">
+            <span>Choisir un fichier</span>
+            <input type="file" id="photo_de_profil" name="photo_de_profil" />
+          </label>
 
           <label for="photo_de_profil">Choissisez une photo de profil</label>
 
