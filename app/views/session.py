@@ -101,7 +101,14 @@ def profil_recherche():
         lien = reseau[0]
         list_reseaux.append(["Tiktok",lien])
 
-    return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux)
+    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    nom_produit = [row[0] for row in nom_produit.fetchall()]
+    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    image_produit = [row[0] for row in image_produit.fetchall()]
+       
+    produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+
+    return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux, produits=produits)
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 @login_required
@@ -119,9 +126,9 @@ def shop():
     nom_utilisateur = request.args.get('nom')
     db = get_db()
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
-    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     nom_produit = [row[0] for row in nom_produit.fetchall()]
-    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     image_produit = [row[0] for row in image_produit.fetchall()]
        
     produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
@@ -208,7 +215,6 @@ def modification_portfolio():
                 if file and fichier_autorise(file.filename):
                     filename = secure_filename(file.filename)
                     uploads_folder = os.path.join(current_app.root_path, 'static/images/images_portfolio')
-                    print(uploads_folder)
                     file_path = os.path.join(uploads_folder, filename).replace('\\','/')
                     file.save(file_path)
                     file_path_save = os.path.join('images/images_portfolio', filename).replace('\\','/')

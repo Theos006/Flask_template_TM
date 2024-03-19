@@ -32,7 +32,7 @@
                     {% for reseau in list_reseaux %}
                         <a href={{reseau[1]}}>
                             <p>{{reseau[0]}}</p>
-                        </a>
+                        </a> 
                     {% endfor %} 
                 </div>
             </div>
@@ -47,7 +47,7 @@
                             <div class="apercu">Aperçu portfolio</div>
                         </div>
                     </a>
-                    <a href="{{ url_for('session.shop', nom=nom) }}" style="text-decoration: none;">
+                    <a href="{{ url_for('session.shop', nom=nom, ) }}" style="text-decoration: none;">
                         <div class="rectangle_shop">
                             <div class="txt_shop">Shop</div>
                             <div class="apercu">Aperçu shop</div>
