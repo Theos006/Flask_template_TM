@@ -55,11 +55,6 @@
             <option value=Createur>Créateur</option>
           </select>
 
-          <div class="changement_une_info">
-            <label for="new_compte_bancaire">Compte bancaire : {{g.user.CompteBancaire}}</label>
-            <input name="new_compte_bancaire" class="input_mon_compte"
-            placeholder="Nouveau compte bancaire">
-          </div>
           {% if g.user.TypeDeCompte == "Createur"%}
             <label for="photo_de_profil">Choissiez un QR code Twint</label>
             <div id="cadre_QR">

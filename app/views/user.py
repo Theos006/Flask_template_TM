@@ -50,12 +50,11 @@ def show_profile():
             except db.IntegrityError:
                 error = f"Le nom {new_username} est déjà pris."
                 alert(error)
-            return redirect(url_for('user.show_profile'))
         
         if len(new_biographie)>=1 :
             db.execute("UPDATE Utilisateur SET Biographie = ? WHERE IdUtilisateur = ?",(new_biographie,user_id))
             db.commit()
-            return redirect(url_for('user.show_profile'))
+
         
         if len(new_email)>=1 :
             try :
@@ -64,7 +63,7 @@ def show_profile():
             except db.IntegrityError:
                 error = f"L'adresse {new_email} est déjà pris."
                 flash(error)
-            return redirect(url_for('user.show_profile'))
+
 
         if len(old_mdp)>=1 and len(new_mdp1)>=1 and len(new_mdp2)>= 1 :
             if check_password_hash(g.user['MotDePasse'],old_mdp):
@@ -77,12 +76,12 @@ def show_profile():
             else :
                 error = f"Mot de passe incorrect"
                 flash(error)
-            return redirect(url_for('user.show_profile'))
+
         
         if len(type_de_compte)>=1 :
             db.execute("UPDATE Utilisateur SET TypeDeCompte = ? WHERE IdUtilisateur = ?", (type_de_compte, user_id))
             db.commit()
-            return redirect(url_for('user.show_profile'))
+
          
         if 'ajout_QR' in request.files:
             file = request.files['ajout_QR']
@@ -94,7 +93,6 @@ def show_profile():
                 file_path_save = os.path.join('images/images_QR/',filename)
                 db.execute("UPDATE Utilisateur SET QrCodeTwint = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
                 db.commit()     
-            return render_template('user/profile.html')
         
         if 'photo_de_profil' in request.files:
             file = request.files['photo_de_profil']
@@ -106,8 +104,8 @@ def show_profile():
                 file_path_save = os.path.join('images/photos_profil/',filename)
                 db.execute("UPDATE Utilisateur SET PhotoDeProfil = ? WHERE IdUtilisateur = ?", (file_path_save, user_id))
                 db.commit()     
-            return render_template('user/profile.html')
-        
+            
+        return render_template('user/profile.html')
     return render_template('user/profile.html')
 
 
