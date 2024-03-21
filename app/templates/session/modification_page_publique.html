@@ -44,17 +44,17 @@
                     <a href="{{ url_for('session.modification_portfolio', nom=g.user.NomUtilisateur) }}" style="text-decoration: none;">
                         <div class="rectangle_portfolio">
                             <div class="txt_portfolio">Portfolio</div>
-                            <div class="apercu_shop_et_portfolio">
-                                <img src="{{ url_for('static', filename=image_portfolio)}}" class="image_porfolio">
-                            </div>
+                                <div class="apercu_shop_et_portfolio">
+                                    <img src="{{ url_for('static', filename=image_portfolio)}}" class="image_porfolio">
+                                </div>
                         </div>
                     </a>
                     <a href="{{ url_for('session.modification_shop', nom=g.user.NomUtilisateur) }}" style="text-decoration: none;">
                         <div class="rectangle_shop">
                             <div class="txt_shop">Shop</div>
-                            <div class="apercu_shop_et_portfolio">
-                                <img src="{{ url_for('static', filename=image_produit)}}" class="image_porfolio">
-                            </div>
+                                <div class="apercu_shop_et_portfolio">
+                                    <img src="{{ url_for('static', filename=image_produit)}}" class="image_porfolio">
+                                </div>
                         </div>
                     </a>
                 </div>

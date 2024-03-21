@@ -103,13 +103,22 @@ def profil_recherche():
 
     images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     images_produit = [row[0] for row in images_produit.fetchall()]
-    images_produit.reverse()
-    image_produit = images_produit[0]
+    if images_produit != [] :
+        images_produit.reverse()
+        image_produit = images_produit[0]
+    else :
+        image_produit = "Rien"
 
     images_portfolio = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     images_portfolio = [row[0] for row in images_portfolio.fetchall()]
-    images_portfolio.reverse()
-    image_portfolio = images_portfolio[0]
+    if images_portfolio != [] :
+        images_portfolio.reverse()
+        image_portfolio = images_portfolio[0]
+    else :
+        image_portfolio = "Rien"
+
+    print(image_portfolio)
+    print(image_produit)
 
     return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux, image_portfolio = image_portfolio, image_produit = image_produit)
 
