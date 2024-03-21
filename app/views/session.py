@@ -74,32 +74,32 @@ def profil_recherche():
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["X",lien])
+        list_reseaux.append(["X",lien, "images/X.jpg"])
     reseau = db.execute('SELECT Instagram FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["Instagram",lien])
+        list_reseaux.append(["Instagram",lien, "images/instagram.jpg"])
     reseau = db.execute('SELECT Youtube FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["Youtube",lien])
+        list_reseaux.append(["Youtube",lien, "images/youtube.png"])
     reseau = db.execute('SELECT Discord FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["Discord",lien])
+        list_reseaux.append(["Discord",lien, "images/discord.png"])
     reseau = db.execute('SELECT Twitch FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["Twitch",lien])
+        list_reseaux.append(["Twitch",lien, "images/twitch.jpg"])
     reseau = db.execute('SELECT TikTok FROM Reseaux WHERE IdUtilisateur = ?', (g.recherche['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [] and reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["Tiktok",lien])
+        list_reseaux.append(["Tiktok",lien, "images/tiktok.jpg"])
 
     images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     images_produit = [row[0] for row in images_produit.fetchall()]
@@ -172,32 +172,32 @@ def modification_page_publique():
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None] :
         lien = reseau[0]
-        list_reseaux.append(["X",lien])
+        list_reseaux.append(["X",lien, "images/X.jpg"])
     reseau = db.execute('SELECT Instagram FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None]  :
         lien = reseau[0]
-        list_reseaux.append(["Instagram",lien])
+        list_reseaux.append(["Instagram",lien, "images/instagram.jpg"])
     reseau = db.execute('SELECT Youtube FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None]  :
         lien = reseau[0]
-        list_reseaux.append(["Youtube",lien])
+        list_reseaux.append(["Youtube",lien, "images/youtube.png"])
     reseau = db.execute('SELECT Discord FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None]  :
         lien = reseau[0]
-        list_reseaux.append(["Discord",lien])
+        list_reseaux.append(["Discord",lien, "images/discord.png"])
     reseau = db.execute('SELECT Twitch FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None]  :
         lien = reseau[0]
-        list_reseaux.append(["Twitch",lien])
+        list_reseaux.append(["Twitch",lien, "images/twitch.jpg"])
     reseau = db.execute('SELECT TikTok FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
     if reseau != [None]  :
         lien = reseau[0]
-        list_reseaux.append(["Tiktok",lien])
+        list_reseaux.append(["Tiktok",lien, "images/tiktok.jpg"])
 
     images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
     images_produit = [row[0] for row in images_produit.fetchall()]
@@ -208,6 +208,8 @@ def modification_page_publique():
     images_portfolio = [row[0] for row in images_portfolio.fetchall()]
     images_portfolio.reverse()
     image_portfolio = images_portfolio[0]
+
+    print(list_reseaux)
 
     return render_template('session/modification_page_publique.html', list_reseaux = list_reseaux, image_produit = image_produit, image_portfolio = image_portfolio)
 

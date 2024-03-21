@@ -30,8 +30,13 @@
             <div class="reseaux_sociaux">
                 <div class="box_reseaux_sociaux">
                     {% for reseau in list_reseaux %}
-                        <a href={{reseau[1]}}>
-                            <p>{{reseau[0]}}</p>
+                        <a href={{reseau[1]}} class = "reseau">
+                            <div class = "logo_nom_reseau">
+                                <div class="carre_logo_reseaux">
+                                    <img src="{{ url_for('static', filename=reseau[2]) }}" class="logo_reseaux">
+                                </div>
+                                <p >{{reseau[0]}}</p> 
+                            </div>
                         </a>  
                     {% endfor %} 
                 </div>

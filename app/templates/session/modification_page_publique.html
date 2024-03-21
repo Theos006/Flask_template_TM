@@ -31,8 +31,13 @@
             <div class="reseaux_sociaux"> 
                 <a href="{{ url_for('session.ajout_lien', nom=g.user.NomUtilisateur) }}" class ="ajout_lien">Modifier mes réseaux</a>
                 {% for reseau in list_reseaux %}
-                    <a href={{reseau[1]}}>
-                        <p>{{reseau[0]}}</p>
+                    <a href={{reseau[1]}} class = "reseau">
+                        <div class = "logo_nom_reseau">
+                            <div class="carre_logo_reseaux">
+                                <img src="{{ url_for('static', filename=reseau[2]) }}" class="logo_reseaux">
+                            </div>
+                            <p >{{reseau[0]}}</p> 
+                        </div>
                     </a>
                 {% endfor %} 
             </div> 
