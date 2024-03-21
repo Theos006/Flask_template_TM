@@ -101,14 +101,17 @@ def profil_recherche():
         lien = reseau[0]
         list_reseaux.append(["Tiktok",lien])
 
-    nom_produit = db.execute('SELECT NomProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
-    nom_produit = [row[0] for row in nom_produit.fetchall()]
-    image_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
-    image_produit = [row[0] for row in image_produit.fetchall()]
-       
-    produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+    images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
+    images_produit = [row[0] for row in images_produit.fetchall()]
+    images_produit.reverse()
+    image_produit = images_produit[0]
 
-    return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux, produits=produits)
+    images_portfolio = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
+    images_portfolio = [row[0] for row in images_portfolio.fetchall()]
+    images_portfolio.reverse()
+    image_portfolio = images_portfolio[0]
+
+    return render_template('session/profil_recherche.html', nom = nom_utilisateur, list_reseaux = list_reseaux, image_portfolio = image_portfolio, image_produit = image_produit)
 
 @session_bp.route('/portfolio', methods=('GET', 'POST'))
 @login_required
@@ -154,6 +157,7 @@ def modification_page_publique():
     nom_utilisateur = request.args.get('nom')
     db = get_db()  
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
+    
     list_reseaux = []
     reseau = db.execute('SELECT X FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
@@ -185,8 +189,18 @@ def modification_page_publique():
     if reseau != [None]  :
         lien = reseau[0]
         list_reseaux.append(["Tiktok",lien])
- 
-    return render_template('session/modification_page_publique.html', list_reseaux = list_reseaux)
+
+    images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    images_produit = [row[0] for row in images_produit.fetchall()]
+    images_produit.reverse()
+    image_produit = images_produit[0]
+
+    images_portfolio = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
+    images_portfolio = [row[0] for row in images_portfolio.fetchall()]
+    images_portfolio.reverse()
+    image_portfolio = images_portfolio[0]
+
+    return render_template('session/modification_page_publique.html', list_reseaux = list_reseaux, image_produit = image_produit, image_portfolio = image_portfolio)
 
 @session_bp.route('/modification_shop', methods=('GET', 'POST'))
 @login_required
