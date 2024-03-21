@@ -29,11 +29,17 @@
                     <a href="{{ url_for('session.ajout_produit', nom=g.user.NomUtilisateur) }}" id="nouveau_produit">Ajouter un produit</a>
                 </div>
                     {% for produit in produits %}
-                    <div class="rectangle_article" style="cursor:default;">
-                        <div>
-                            <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
-                            <div class="description_article"><p>{{ produit[0] }}</p></div>
+                    <div id="img_supp">
+                        <div class="rectangle_article" style="cursor:default;">
+                            <div>
+                                <div class="photo_article"><img src="{{ url_for('static', filename=produit[1] )}}"></div>
+                                <div class="description_article"><p>{{ produit[0] }}</p></div>
+                            </div>
                         </div>
+                        <form method="post">
+                            <input type="hidden" name="image_path" value="{{ produit[0] }}">
+                            <input type="submit" value="X" id="bouton_supprimer">
+                        </form>
                     </div>
                     {% endfor %}  
                 

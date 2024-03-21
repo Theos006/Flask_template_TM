@@ -202,6 +202,13 @@ def modification_shop():
     produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
 
     produits.reverse()
+
+    image_path = request.form.get('image_path')
+    if image_path:
+        db = get_db()
+        db.execute("DELETE FROM Produit WHERE NomProduit = ?", (image_path,))
+        db.commit()
+        return render_template('session/modification_shop.html', produits=produits)
     
     return render_template('session/modification_shop.html', produits=produits)
 
