@@ -35,8 +35,14 @@
                 </form>
             </div>
             {%for image in images%}
-                <div class="carre_portfolio">
-                    <img src="{{ url_for('static', filename=image)}}" class="image_porfolio">
+                <div id="img_supp">
+                    <div class="carre_portfolio">
+                        <img src="{{ url_for('static', filename=image)}}" class="image_porfolio">
+                    </div>
+                    <form method="post">
+                        <input type="hidden" name="image_path" value="{{ image }}">
+                        <input type="submit" value="X" id="bouton_supprimer">
+                    </form>
                 </div>
             {%endfor%}
         </div>

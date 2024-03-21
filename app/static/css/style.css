@@ -964,3 +964,19 @@ label{
     justify-content: center;
     justify-items: center;
 }
+
+#bouton_supprimer{
+    margin-top: -30%;
+    margin-left: -60%;
+    height: 45px;
+    width: 45px;
+    background-color: C4C4C4;
+    color: black;
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+#img_supp{
+    display: flex;
+    align-items: flex-start;
+}

@@ -228,6 +228,12 @@ def modification_portfolio():
                         db.execute("INSERT INTO ImagePortfolio (IdUtilisateur, Description, Image) VALUES (?,?,?)", (g.user['IdUtilisateur'], 'Description indisponible pour le moment', file_path_save))
                         db.commit()
                         return render_template('session/modification_portfolio.html', images=images)
+        image_path = request.form.get('image_path')
+        if image_path:
+            db = get_db()
+            db.execute("DELETE FROM ImagePortfolio WHERE Image = ?", (image_path,))
+            db.commit()
+            return render_template('session/modification_portfolio.html', images=images)
     return render_template('session/modification_portfolio.html', images=images)
 
 @session_bp.route('/ajout_produit', methods=('GET', 'POST'))
@@ -333,3 +339,4 @@ def qr_code():
     print(g.recherche['QrCodeTwint'])
     g.produit = db.execute('SELECT * FROM Produit WHERE NomProduit = ? AND IdUtilisateur = ?', (nom_produit,g.recherche['IdUtilisateur'])).fetchone()
     return render_template('session/qr_code.html')
+
