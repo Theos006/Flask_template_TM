@@ -118,6 +118,7 @@ def portfolio():
     g.recherche = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     images = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.recherche['IdUtilisateur']),))
     images = [row[0] for row in images.fetchall()]
+    images.reverse()
     return render_template('session/portfolio.html', images=images)
 
 @session_bp.route('/shop', methods=('GET', 'POST'))
@@ -132,6 +133,8 @@ def shop():
     image_produit = [row[0] for row in image_produit.fetchall()]
        
     produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+
+    produits.reverse()
     
     return render_template('session/shop.html', produits=produits)
  
@@ -197,6 +200,8 @@ def modification_shop():
     image_produit = [row[0] for row in image_produit.fetchall()]
        
     produits=[[nom_produit[i], image_produit[i]] for i in range(len(nom_produit))]
+
+    produits.reverse()
     
     return render_template('session/modification_shop.html', produits=produits)
 
@@ -209,6 +214,7 @@ def modification_portfolio():
     g.user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom_utilisateur,)).fetchone()
     images = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
     images = [row[0] for row in images.fetchall()]
+    images.reverse()
     if request.method == 'POST' :
         if 'nouvelle_image_portfolio' in request.files:
                 file = request.files['nouvelle_image_portfolio']
