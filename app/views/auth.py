@@ -13,11 +13,11 @@ def datenow():
 
 def send_email(to_email, message, subject):
     #Information de connection
-    HOST = "smtp.gmail.com"
+    HOST = "smtp.office365.com"
     PORT = 587
-    FROM_EMAIL = "créatorconnectbot@gmail.com"
+    FROM_EMAIL = r"creatorconnectbot@outlook.com"
 
-    MDP = "TM-WEB-2024"
+    MDP = "TMWEB2024"
 
     #Information général de l'envoie
     msg = MIMEMultipart()
@@ -34,7 +34,6 @@ def send_email(to_email, message, subject):
             #Connection au serveur smtp
             smtp.ehlo()
             smtp.starttls()
-            #MDP vient du fichier config (il ne faut pas pouvoir avoir accès au mot de passe depuis github)
             smtp.login(FROM_EMAIL, MDP)
 
             # Envoie de l'email
@@ -106,7 +105,7 @@ def register_createur():
     if request.method == 'POST':
 
         # On récupère les champs 'username' et 'password' de la requête HTTP
-        username = request.form['username']
+        username = request.form['username'] 
         password = request.form['password']
         email = request.form['email']
 
@@ -168,7 +167,11 @@ def login():
 
         if 'mdp_oublie' in request.form:
             print("mdp_oublie")
-            send_email(g.user['Email'], "ça matche", "testmail")
+            mdp = "Creator1234"
+            message = "Votre nouveau mot de passe est : " + mdp
+            send_email(user['Email'], message, "Reinitialisation mot de passe")
+            db.execute("UPDATE Utilisateur SET MotDePasse = ? WHERE IdUtilisateur = ?",(generate_password_hash(mdp), user['IdUtilisateur']))
+            db.commit()
 
         # Si aucun utilisateur n'est trouve ou si le mot de passe est incorrect
         # on crée une variable error 
