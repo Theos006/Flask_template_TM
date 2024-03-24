@@ -2,6 +2,46 @@ from flask import (Blueprint, flash, g, redirect, render_template, request, sess
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.db.db import get_db
 import os
+from datetime import date
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+def datenow():
+    today= date.today()
+    return today.strftime("%d/%m/%Y")
+
+def send_email(to_email, message, subject):
+    #Information de connection
+    HOST = "smtp.gmail.com"
+    PORT = 587
+    FROM_EMAIL = "créatorconnectbot@gmail.com"
+
+    MDP = "TM-WEB-2024"
+
+    #Information général de l'envoie
+    msg = MIMEMultipart()
+    msg['Subject'] = subject
+    msg['From'] = FROM_EMAIL
+    msg['To'] = to_email
+    msg['Cc'] = FROM_EMAIL
+    msg['Bcc'] = FROM_EMAIL
+
+    #Message peut être une simple chaine de caractères pour ceci il suffit de remplacer MIMEText(message,'plain')
+    msg.attach(MIMEText(message, 'html'))
+    try:
+        with smtplib.SMTP(HOST, port = PORT) as smtp:
+            #Connection au serveur smtp
+            smtp.ehlo()
+            smtp.starttls()
+            #MDP vient du fichier config (il ne faut pas pouvoir avoir accès au mot de passe depuis github)
+            smtp.login(FROM_EMAIL, MDP)
+
+            # Envoie de l'email
+            smtp.send_message(msg)
+            print('Email correctement envoyé')
+    except Exception as e:
+        print(f'Error: {e}')
 
 
 # Création d'un blueprint contenant les routes ayant le préfixe /auth/...
@@ -78,7 +118,7 @@ def register_createur():
         if username and password:
             try:
                 # Récupérer le maximum actuel dans la colonne IdUtilisateur
-                result = db.execute("SELECT MAX(IdUtilisateur) FROM Utilisateur").fetchone()
+                result = db.execute("SELECT MAX(IdUtilisateur) FROM Utilisateur").fetchone() 
                 dernier_id = result[0]
 
                 # Vérifier si des données existent déjà
@@ -125,6 +165,10 @@ def login():
         # On récupère l'utilisateur avec le username spécifié (une contrainte dans la db indique que le nom d'utilisateur est unique)
         # La virgule après username est utilisée pour créer un tuple contenant une valeur unique
         user = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (username,)).fetchone()
+
+        if 'mdp_oublie' in request.form:
+            print("mdp_oublie")
+            send_email(g.user['Email'], "ça matche", "testmail")
 
         # Si aucun utilisateur n'est trouve ou si le mot de passe est incorrect
         # on crée une variable error 
