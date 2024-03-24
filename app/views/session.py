@@ -29,14 +29,19 @@ session_bp = Blueprint('session', __name__, url_prefix='/session')
 @session_bp.route('/accueil_connecte', methods=('GET', 'POST'))
 @login_required
 def accueil_connecte():
-    list_nom = ["Admin", "Mirko", "Mathieu", "Moi", "marc"]
+    list_nom = ["Admin"]
     list_pdp = [] 
     list_img_portfolio = [] 
     list_img_shop = []
     image_portfolio = []
 
     db = get_db()
+
+    noms = db.execute("SELECT NomUtilisateur FROM Utilisateur LIMIT 10")
+    noms = [row[0] for row in noms.fetchall()]
     
+    list_nom = [nom for nom in noms]
+
     if request.method == 'POST':
         
         recherche = request.form['recherche']
@@ -50,10 +55,14 @@ def accueil_connecte():
     for nom in list_nom:
         g.nom = db.execute('SELECT * FROM Utilisateur WHERE NomUtilisateur = ?', (nom,)).fetchone()
         image_pdp = db.execute("SELECT PhotoDeProfil FROM Utilisateur WHERE NomUtilisateur = ?", (nom,))
-        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'], ))
+        image_portfolio = db.execute("SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?", (g.nom['IdUtilisateur'], ))
         image_portfolio = [row[0] for row in image_portfolio.fetchall()]
-        image_shop = db.execute("SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ? LIMIT 3", (g.nom['IdUtilisateur'],))
+        image_portfolio.reverse()
+        image_portfolio = image_portfolio[:2]
+        image_shop = db.execute("SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?", (g.nom['IdUtilisateur'],))
         image_shop = [row[0] for row in image_shop.fetchall()]
+        image_shop.reverse()
+        image_shop = image_shop[:2]
         list_pdp.append(image_pdp.fetchone()[0])  
         if image_portfolio != None : 
             list_img_portfolio.append(image_portfolio)
