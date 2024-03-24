@@ -37,7 +37,7 @@ def accueil_connecte():
 
     db = get_db()
 
-    noms = db.execute("SELECT NomUtilisateur FROM Utilisateur LIMIT 10")
+    noms = db.execute("SELECT NomUtilisateur FROM Utilisateur WHERE TypeDeCompte = 'Createur' LIMIT 10")
     noms = [row[0] for row in noms.fetchall()]
     
     list_nom = [nom for nom in noms]
@@ -179,44 +179,51 @@ def modification_page_publique():
     list_reseaux = []
     reseau = db.execute('SELECT X FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None] :
+    print(reseau)
+    if reseau != [None] and reseau != []:
         lien = reseau[0]
         list_reseaux.append(["X",lien, "images/X.jpg"])
     reseau = db.execute('SELECT Instagram FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None]  :
+    if reseau != [None] and reseau != [] :
         lien = reseau[0]
         list_reseaux.append(["Instagram",lien, "images/instagram.jpg"])
     reseau = db.execute('SELECT Youtube FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None]  :
+    if reseau != [None] and reseau != [] :
         lien = reseau[0]
         list_reseaux.append(["Youtube",lien, "images/youtube.png"])
     reseau = db.execute('SELECT Discord FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None]  :
+    if reseau != [None] and reseau != [] :
         lien = reseau[0]
         list_reseaux.append(["Discord",lien, "images/discord.png"])
     reseau = db.execute('SELECT Twitch FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None]  :
+    if reseau != [None] and reseau != [] :
         lien = reseau[0]
         list_reseaux.append(["Twitch",lien, "images/twitch.jpg"])
     reseau = db.execute('SELECT TikTok FROM Reseaux WHERE IdUtilisateur = ?', (g.user['IdUtilisateur'],))
     reseau = [row[0] for row in reseau.fetchall()]
-    if reseau != [None]  :
+    if reseau != [None] and reseau != [] :
         lien = reseau[0]
         list_reseaux.append(["Tiktok",lien, "images/tiktok.jpg"])
 
     images_produit = db.execute('SELECT ImageProduit FROM Produit WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
     images_produit = [row[0] for row in images_produit.fetchall()]
     images_produit.reverse()
-    image_produit = images_produit[0]
+    if images_produit != [] :   
+        image_produit = images_produit[0]
+    else :
+        image_produit = []
 
     images_portfolio = db.execute('SELECT Image FROM ImagePortfolio WHERE IdUtilisateur = ?', (int(g.user['IdUtilisateur']),))
     images_portfolio = [row[0] for row in images_portfolio.fetchall()]
     images_portfolio.reverse()
-    image_portfolio = images_portfolio[0]
+    if images_portfolio != [] :
+        image_portfolio = images_portfolio[0]
+    else :
+        image_portfolio = []
 
     print(list_reseaux)
 

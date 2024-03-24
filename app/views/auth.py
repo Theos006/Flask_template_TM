@@ -76,7 +76,7 @@ def register_client():
                 # S'il n'y a pas de données, on commence à partir de 1 
                     idUtilisateurs = 1
 
-                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur, PhotoDeProfil) VALUES (?, ?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, "Client", idUtilisateurs, "images/photos_profil/image_base.jpg"))
+                db.execute("INSERT INTO Utilisateur (NomUtilisateur, MotDePasse, Email, TypeDeCompte, IdUtilisateur, PhotoDeProfil, QrCodeTwint) VALUES (?, ?, ?, ?, ?, ?, ?)",(username, generate_password_hash(password), email, "Client", idUtilisateurs, "images/photos_profil/image_base.jpg", "images/photos_profil/image_base.jpg", "images/images_QR/Votre_QR_Code.png"))
 
                 # db.commit() permet de valider une modification de la base de données
                 db.commit()
