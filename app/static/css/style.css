@@ -90,9 +90,11 @@ body{
 }
 
 .bouton_deconnexion{
-    height: 130px;
-    width: 130px;
-    cursor: pointer;    
+    height: 74px;
+    width: 50px;
+    cursor: pointer; 
+    margin-bottom: 45%; 
+    margin-left: 45%;  
 }
 
 .logo_retour_accueil_connecte{
