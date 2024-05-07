@@ -6,6 +6,9 @@ from datetime import date
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from app.config import MDP
+import string
+import random
 
 
 def send_email(to_email, message, subject):
@@ -13,8 +16,6 @@ def send_email(to_email, message, subject):
     HOST = "smtp.office365.com"
     PORT = 587
     FROM_EMAIL = r"creatorconnectbot@outlook.com"
-
-    MDP = "TMWEB2024"
 
     #Information général de l'envoie
     msg = MIMEMultipart()
@@ -164,7 +165,10 @@ def login():
 
         if 'mdp_oublie' in request.form:
             print("mdp_oublie")
-            mdp = "Creator1234"
+            mdp = ""
+            for i in range (10):
+                mdp += random.choice(string.ascii_letters + string.digits)
+            print(mdp)
             message = "Votre nouveau mot de passe est : " + mdp
             send_email(user['Email'], message, "Reinitialisation mot de passe")
             db.execute("UPDATE Utilisateur SET MotDePasse = ? WHERE IdUtilisateur = ?",(generate_password_hash(mdp), user['IdUtilisateur']))
