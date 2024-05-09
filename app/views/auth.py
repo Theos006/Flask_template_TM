@@ -241,3 +241,10 @@ def creation_compte_createur():
     db = get_db 
     # à compléter
     return render_template('auth/creation_compte_createur.html')  
+
+
+#route conditions générales
+@auth_bp.route('/condition_utilisation', methods=('GET', 'POST'))
+def condition_utilisation():
+    db = get_db()
+    return render_template('auth/condition_utilisation.html')

@@ -113,3 +113,43 @@
 .txt_choix_de_compte{
     color: #EE9250;
 }
+
+.txt_util_bold{
+    font-size: 120%;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.txt_util{
+    font-size: 120%;
+    font-weight: 150;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#accept_util{
+    background: hsla(31, 90%, 88%, 1);
+    background: linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -moz-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    background: -webkit-linear-gradient(135deg, hsla(31, 90%, 88%, 1) 0%, hsla(31, 91%, 82%, 1) 50%, hsla(31, 94%, 76%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FCE1C4", endColorstr="#FBD2A6", GradientType=1 );
+    height: 50px;
+    width: 450px; 
+    border-radius: 100px;
+    cursor: pointer;
+    color:#EE9250 ;
+    border: none;
+    font-size: 120%;
+    font-weight: 150;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: absolute;
+    bottom: 20%;
+}
+
+#box_util{
+    display: flex;
+    justify-content: center;
+}
